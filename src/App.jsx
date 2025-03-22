@@ -12,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SplashScreen />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Layout>
   )
