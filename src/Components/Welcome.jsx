@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Welcome = () => {
 
@@ -14,9 +15,14 @@ const Welcome = () => {
 
         {/* buttons */}
         <div className="welcome-buttons row px-5 mt-auto mb-5 d-flex flex-column align-items-center justify-content-center">
-            <button type="submit" className="button btn-brand my-2">Sign Up</button>
+            {/* <button type="submit" className="button btn-brand my-2"><Link to="/signup">Create account</Link></button> */}
+            
+            <Link to="/signup" className="button btn-brand link my-2">Create account</Link>
 
-            <button type="submit" className="button btn-outline-brand">Log in</button>
+
+            <Link to="/login" className="button btn-outline-brand link">Log in</Link>
+
+            {/* <button type="submit" className="button btn-outline-brand"><Link to="/login">Log in</Link></button> */}
    
         </div>
 
