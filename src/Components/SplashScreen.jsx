@@ -9,8 +9,8 @@ const SplashScreen = () => {
   useEffect(() => {
     // Redirect to main screen after 3 seconds
     const timer = setTimeout(() => {
-      navigate("/home")
-    }, 1000)
+      navigate("/welcome")
+    }, 20000)
 
     return () => clearTimeout(timer)
   }, [navigate])

@@ -6,6 +6,7 @@ import Login from './Components/Login'
 import Layout from "./Layout/Layout"
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
+import Welcome from './Components/Welcome'
 
 function App() {
   
@@ -17,6 +18,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path='/welcome' element={<Welcome />} />
       </Routes>
     </Layout>
   )

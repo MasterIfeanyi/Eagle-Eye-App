@@ -57,6 +57,18 @@ li{
   border-color: #212529;
 }
 
+.btn-outline-brand {
+  background-color: white;
+  color: black;
+  border-color: 1px solid black;
+}
+
+.btn-outline-brand:hover {
+  background-color: #212529;
+  color: white;
+  border-color: #212529;
+}
+
 /* Mobile container styles for desktop view */
 @media (min-width: 568px) {
   .mobile-container {
@@ -269,3 +281,20 @@ input {
 footer {
   bottom: 0;
 }
+
+
+/* Welcome */
+.welcome {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+}
+
+.welcome-title {
+  text-align: center;
+  margin: 40px auto 0px auto;
+  max-width: 600px;
+  padding: 10px;
+}
+
