@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch, faPhone, faUser } from "@fortawesome/free-solid-svg-icons"
+import { faUser, faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react'
 
 const Signup = () => {
@@ -14,27 +14,32 @@ const Signup = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [error, setError] = useState("")
 
-    if (!username || !email || !password || !confirmPassword) {
-        setError("Please fill in all fields")
-        return
-    }
+    const handleSubmit = () => {
 
-    if (password !== confirmPassword) {
-        setError("Passwords do not match")
-        return
+        if (!username || !email || !password || !confirmPassword) {
+            setError("Please fill in all fields")
+            return
+        }
+    
+        if (password !== confirmPassword) {
+            setError("Passwords do not match")
+            return
+        }
+
+        // Send data to backend
     }
 
   return (
     <div className='signup'>
 
-        <div className="col-12 section-title">
+        <div className="section-title">
             <h2 className="fw-bold mb-1">Create Account</h2>
             <p className="text-muted mb-4">Sign up to get started</p>
         </div>
 
         {error && <div className="alert alert-danger">{error}</div>}
 
-        <form onSubmit={handleSubmit} className="form">
+        <form onSubmit={handleSubmit} className='row g-3'>
             <div className="input-group">
                 <span className="input-group-text bg-white border-end-0">
                     <FontAwesomeIcon icon={faUser} />
@@ -47,6 +52,7 @@ const Signup = () => {
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
+            
 
             <div className="input-group">
                 <span className="input-group-text bg-white border-end-0">
@@ -100,8 +106,9 @@ const Signup = () => {
                 </span>
             </div>
 
-            <button type="submit" className="btn btn-brand">Sign Up</button>
-
+            <div className="col-12 d-flex justify-content-center">
+                <button type="submit" className="btn btn-brand">Sign Up</button>
+            </div>
         </form>
     </div>
   )

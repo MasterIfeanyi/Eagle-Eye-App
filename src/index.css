@@ -187,8 +187,8 @@ footer {
 }
 
 .section-title{
-  text-align: center;
-  margin: 10px auto;
+  text-align: left;
+  margin: 40px 0px 0px 10px;
   max-width: 600px;
   padding: 10px;
 }
@@ -205,4 +205,36 @@ footer {
   background-color: black;
   border-color: 1px solid black;
   color: white;
+}
+
+.signup .btn-brand:hover {
+  background-color: #212529;
+  border-color: #212529;
+  color: white;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.signup .form-control,
+.signup .input-group-text {
+  border-color: #dee2e6;
+  outline: none;
+  box-shadow: none;
+  padding: 16px 10px
+}
+
+.signup .form-control:focus,
+.signup .input-group-text:focus {
+  border-color: #212529;
+  outline: none;
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+input {
+  border-color: #212529;
+  outline: none;
+  box-shadow: none;
 }
