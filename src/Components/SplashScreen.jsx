@@ -10,7 +10,7 @@ const SplashScreen = () => {
     // Redirect to main screen after 3 seconds
     const timer = setTimeout(() => {
       navigate("/home")
-    }, 10000)
+    }, 1000)
 
     return () => clearTimeout(timer)
   }, [navigate])

@@ -69,9 +69,20 @@ const Login = () => {
 
 
             <div className="col-12 d-flex justify-content-center">
-                <button type="submit" className="btn btn-brand">Log in</button>
+                <button type="submit" className="button btn-brand">Log in</button>
             </div>
         </form>
+
+
+
+        <footer className="text-center mt-auto">
+            <p className="text-muted">
+              Don't have account?
+              <span className="ms-1 text-decoration-underline fw-medium cursor-pointer">
+                Sign up
+              </span>
+            </p>
+        </footer>
     </div>
   )
 }

@@ -36,21 +36,22 @@ li{
   min-height: 100vh; 
 }
 
-.btn {
-  padding: 300px 27px;
+.button {
+  padding: 8px 27px;
   margin: 0px 16px 0px 0px;
-  border-radius: 32px;
+  border-radius: 38px;
   font-weight: 500;
+  text-align: center;
   transition: all 1s ease;
 }
 
-.btn.btn-brand {
+.button.btn-brand {
   background-color: black;
   color: white;
   border-color: 1px solid black;
 }
 
-.btn.btn-brand:hover {
+.button.btn-brand:hover {
   background-color: #212529;
   color: white;
   border-color: #212529;
@@ -263,4 +264,8 @@ input {
   flex-direction: column;
   background-color: white;
   height: 100%;
+}
+
+footer {
+  bottom: 0;
 }

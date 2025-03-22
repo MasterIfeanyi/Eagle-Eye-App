@@ -107,7 +107,7 @@ const Signup = () => {
             </div>
 
             <div className="col-12 d-flex justify-content-center">
-                <button type="submit" className="btn btn-brand">Sign Up</button>
+                <button type="submit" className="button btn-brand">Sign Up</button>
             </div>
         </form>
     </div>
