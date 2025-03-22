@@ -37,13 +37,24 @@ li{
 }
 
 .btn {
-  padding: 14px 27px;
+  padding: 300px 27px;
   margin: 0px 16px 0px 0px;
-  border-radius: 12px;
+  border-radius: 32px;
   font-weight: 500;
   transition: all 1s ease;
 }
 
+.btn.btn-brand {
+  background-color: black;
+  color: white;
+  border-color: 1px solid black;
+}
+
+.btn.btn-brand:hover {
+  background-color: #212529;
+  color: white;
+  border-color: #212529;
+}
 
 /* Mobile container styles for desktop view */
 @media (min-width: 568px) {
@@ -107,7 +118,7 @@ li{
 }
 
 .search-bar-container {
-  margin: 0 auto;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,15 +204,15 @@ footer {
   padding: 10px;
 }
 
-.signup .btn {
+/* .signup .btn, .login .btn {
   padding: 14px 27px;
   margin: 0px 16px 0px 0px;
-  border-radius: 12px;
+  border-radius: 32px;
   font-weight: 500;
   transition: all 1s ease;
-}
+} */
 
-.signup .btn-brand {
+/* .signup .btn-brand, .login .btn-brand {
   background-color: black;
   border-color: 1px solid black;
   color: white;
@@ -211,14 +222,17 @@ footer {
   background-color: #212529;
   border-color: #212529;
   color: white;
-}
+} */
 
 .cursor-pointer {
   cursor: pointer;
 }
 
 .signup .form-control,
-.signup .input-group-text {
+.signup .input-group-text, 
+.login .form-control,
+.login .input-group-text
+{
   border-color: #dee2e6;
   outline: none;
   box-shadow: none;
@@ -226,7 +240,10 @@ footer {
 }
 
 .signup .form-control:focus,
-.signup .input-group-text:focus {
+.signup .input-group-text:focus, 
+.login .form-control:focus, 
+.login .input-group-text:focus
+{
   border-color: #212529;
   outline: none;
   box-shadow: none;
@@ -237,4 +254,13 @@ input {
   border-color: #212529;
   outline: none;
   box-shadow: none;
+}
+
+
+/* login screen */
+.login {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
 }
