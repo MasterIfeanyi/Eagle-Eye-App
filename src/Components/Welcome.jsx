@@ -8,8 +8,8 @@ const Welcome = () => {
   return (
     <div className='welcome'>
         <div className="welcome-title">
-            <h2 className="fw-bold mb-1">Be a Patriotic citizen, Play your Part</h2>
-            <p className="text-muted mb-4">see something, say something</p>
+          <h2 className="fw-bold mb-1">Be a Patriotic citizen, Play your Part</h2>
+          <p className="text-muted mb-4">see something, say something</p>
         </div>
 
 
