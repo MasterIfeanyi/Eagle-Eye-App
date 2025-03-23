@@ -8,6 +8,7 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import Welcome from './Components/Welcome'
 import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './Components/ProtectedRoute'
 
 function App() {
   

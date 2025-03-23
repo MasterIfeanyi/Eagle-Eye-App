@@ -2,6 +2,9 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react'
+import { auth, createUserWithEmailAndPassword, updateProfile } from '../firebase/config';
+import { useAuth } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
 
@@ -13,8 +16,17 @@ const Signup = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
 
-    const handleSubmit = () => {
+
+    const { setCurrentUser } = useAuth() // Get setCurrentUser from AuthContext
+
+    const navigate = useNavigate() 
+
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
+        setError('');
 
         if (!username || !email || !password || !confirmPassword) {
             setError("Please fill in all fields")
@@ -27,7 +39,43 @@ const Signup = () => {
         }
 
         // Send data to backend
+        try {
+
+            setLoading(true);
+      
+            // Create user with Firebase Authentication
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+            // Update AuthContext with the new user
+            setCurrentUser(userCredential.user)
+
+
+            navigate('/home') // Redirect to home page after successful login
+
+            
+        } catch (error) {
+            // Handle specific Firebase errors
+            if (error.code === 'auth/email-already-in-use') {
+                setError('Email is already in use');
+            } else if (error.code === 'auth/weak-password') {
+                setError('Password is too weak');
+            } else if (error.code === 'auth/invalid-email') {
+                setError('Invalid email address');
+            } else {
+                setError(error.message || 'Failed to create account');
+            }
+            console.error(error);
+            } finally {
+            setLoading(false);
+        }
     }
+
+    
+
+ 
+
+
+
 
   return (
     <div className='signup'>
@@ -107,11 +155,12 @@ const Signup = () => {
             </div>
 
             <div className="col-12 d-flex justify-content-center">
-                <button type="submit" className="button btn-brand">Sign Up</button>
+                <button type="submit" className="button btn-brand">{loading ? 'Creating Account...' : 'Sign up'}</button>
             </div>
         </form>
     </div>
   )
+
 }
 
 export default Signup
