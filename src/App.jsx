@@ -11,6 +11,7 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './utils/ProtectedRoute'
 import MissingRoute from './utils/MissingRoute'
 import ReportPage from './Components/ReportPage'
+import SubmitPage from './Components/SubmitPage'
 
 function App() {
   
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path='/welcome' element={<Welcome />} />
           <Route path="/report" element={<ReportPage />} />
+          <Route path="/submit" element={<SubmitPage />} />
           <Route path="*" element={<MissingRoute />} /> 
         </Routes>
       </Layout>
