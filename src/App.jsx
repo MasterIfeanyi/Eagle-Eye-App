@@ -8,7 +8,8 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import Welcome from './Components/Welcome'
 import { AuthProvider } from './context/AuthContext';
-import ProtectedRoute from './Components/ProtectedRoute'
+import ProtectedRoute from './utils/ProtectedRoute'
+import MissingRoute from './utils/MissingRoute'
 
 function App() {
   
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path='/welcome' element={<Welcome />} />
+          <Route path="*" element={<MissingRoute />} /> 
         </Routes>
       </Layout>
     </AuthProvider>
