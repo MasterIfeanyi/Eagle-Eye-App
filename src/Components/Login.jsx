@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { auth, signInWithEmailAndPassword } from '../firebase/config';
 import { useAuth } from '../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
@@ -117,9 +117,9 @@ return (
         <footer className="text-center mt-auto">
             <p className="text-muted">
               Don't have account?
-              <span className="ms-1 text-decoration-underline fw-medium cursor-pointer">
+              <Link to="/signup" className="ms-1 text-decoration-underline fw-medium cursor-pointer">
                 Sign up
-              </span>
+              </Link>
             </p>
         </footer>
     </div>

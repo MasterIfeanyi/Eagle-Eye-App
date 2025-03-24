@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEnvelope, faLock, faEye, faEyeSlash, faExclamationTriangle, faLocation, faUpload } from "@fortawesome/free-solid-svg-icons"
+import { faEnvelope, faLock, faEye, faEyeSlash, faExclamationTriangle, faLocation, faUpload, faCalendar } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react'
 
 const ReportPage = () => {
@@ -10,6 +10,11 @@ const ReportPage = () => {
     const [upload, setUpload] = useState(null)
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
+    const [date, setDate] = useState("")
+    const [anonymous, setAnonymous] = useState("")
+    
+    
+    
 
 
     const handleFileChange = (e) => {
@@ -21,10 +26,10 @@ const ReportPage = () => {
         e.preventDefault()
         setError("")
     
-        if (!title || !location || !upload) {
-          setError("Please fill in all fields")
-          return
-        }
+        if (!title || !location || !date || !description || !upload) {
+            setError("Please fill in all fields")
+            return
+          }
 
         try {
             setLoading(true)
@@ -34,6 +39,8 @@ const ReportPage = () => {
             setLocation("")
             setDescription("")
             setUpload(null)
+            setDate("")
+            setAnonymous("no")
             
         } catch (error) {
             setError("Failed to create report")
@@ -78,6 +85,8 @@ const ReportPage = () => {
                     onChange={(e) => setLocation(e.target.value)}
                 />
             </div>
+
+
             <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
                     <FontAwesomeIcon icon={faUpload} />
@@ -88,12 +97,46 @@ const ReportPage = () => {
                     onChange={handleFileChange}
                 />
             </div>
+
+            <div className="input-group custom-input-group">
+                <span className="input-group-text bg-white border-end-0">
+                    <FontAwesomeIcon icon={faCalendar} />
+                </span>
+                <input
+                    type="date"
+                    className="form-control border-start-0"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                />
+            </div>
+
+            <div className="input-group custom-input-group">
+                <label className="input-group-text bg-white border-end-0" htmlFor="anonymous">
+                    Report Anonymously
+                </label>
+                <select
+                    id="anonymous"
+                    className="form-select border-start-0"
+                    value={anonymous}
+                    onChange={(e) => setAnonymous(e.target.value)}
+                >
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+            </div>
+
+
+            <div className="input-group custom-input-group">
+                <textarea
+                    className="form-control"
+                    placeholder="Description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+            </div>
+
+
         </form>
-
-
-
-
-
     </div>
   )
 }

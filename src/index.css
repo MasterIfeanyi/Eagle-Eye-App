@@ -72,6 +72,34 @@ li{
   border-color: #212529;
 }
 
+
+
+/* CSS Helper class */
+
+.form-control, .form-select,
+.input-group-text
+{
+  border-color: #dee2e6;
+  outline: none;
+  box-shadow: none;
+  padding: 12px 10px
+}
+
+.form-control:focus, .form-select:focus,
+.input-group-text:focus
+{
+  border-color: #212529;
+  outline: none;
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+input {
+  border-color: #212529;
+  outline: none;
+  box-shadow: none;
+}
+
 .link {
   text-decoration: none;
   color: inherit; /* Ensure the link inherits the color of the parent */
@@ -275,7 +303,7 @@ footer {
   border-color: #dee2e6;
   outline: none;
   box-shadow: none;
-  padding: 16px 10px
+  padding: 12px 10px
 }
 
 .signup .form-control:focus,
@@ -346,6 +374,16 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+/* Report page */
+
+.report {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
 }
 
 
