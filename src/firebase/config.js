@@ -7,6 +7,8 @@ import {
   onAuthStateChanged,
   signOut
 } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+
 
 // Replace with your Firebase config values
 const firebaseConfig = {
@@ -21,9 +23,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 export { 
   auth, 
+  db,
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   updateProfile,

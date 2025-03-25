@@ -89,8 +89,8 @@ const Signup = () => {
         </div>
 
 
+        {error && <div className="alert alert-danger mx-3">{error}</div>}
         <form onSubmit={handleSubmit} className='row g-3 px-3'>
-            {error && <div className="alert alert-danger">{error}</div>}
             <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
                     <FontAwesomeIcon icon={faUser} />

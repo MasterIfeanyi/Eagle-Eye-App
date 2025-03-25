@@ -1,32 +1,42 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faLock, faEye, faEyeSlash, faExclamationTriangle, faLocation, faUpload, faCalendar } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react'
+import { db } from '../firebase/config'
+import { collection, addDoc } from 'firebase/firestore'
+
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
+
 
 const ReportPage = () => {
 
     const [title, setTitle] = useState("")
     const [location, setLocation] = useState("")
     const [description, setDescription] = useState("")
-    const [upload, setUpload] = useState(null)
+    // const [upload, setUpload] = useState(null)
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const [date, setDate] = useState("")
-    const [anonymous, setAnonymous] = useState("")
+    const [anonymous, setAnonymous] = useState("no")
+
+    const { currentUser } = useAuth() // Get the current user from AuthContext
+  const navigate = useNavigate() // Get navigate function
+
     
     
     
 
 
-    const handleFileChange = (e) => {
-        setUpload(e.target.files[0])
-    }
+    // const handleFileChange = (e) => {
+    //     setUpload(e.target.files[0])
+    // }
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError("")
     
-        if (!title || !location || !date || !description || !upload) {
+        if (!title || !location || !date || !description || !anonymous) {
             setError("Please fill in all fields")
             return
           }
@@ -35,12 +45,29 @@ const ReportPage = () => {
             setLoading(true)
 
 
+            // Generate a scrambled user ID if the user chooses to submit anonymously
+            const userId = anonymous === "yes" ? `anon-${Math.random().toString(36).substring(2, 15)}` : currentUser.email
+
+
+            // Add a new document with a generated ID
+            await addDoc(collection(db, "reports"), {
+                title,
+                location,
+                date,
+                description,
+                anonymous,
+                userId, // Attach the user ID (email or scrambled ID)
+            })
+
             setTitle("")
             setLocation("")
             setDescription("")
-            setUpload(null)
+            // setUpload(null)
             setDate("")
             setAnonymous("no")
+
+            // Navigate to the submit page
+            navigate('/submit')
             
         } catch (error) {
             setError("Failed to create report")
@@ -58,7 +85,7 @@ const ReportPage = () => {
             <p className="text-muted mb-4">see something, say something</p>
         </div>
 
-        {error && <div className="alert alert-danger">{error}</div>}
+        {error && <div className="alert alert-danger mx-3">{error}</div>}
 
         <form className='row g-3 px-3' onSubmit={handleSubmit}>
             <div className="input-group custom-input-group">
@@ -87,7 +114,7 @@ const ReportPage = () => {
             </div>
 
 
-            <div className="input-group custom-input-group">
+            {/* <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
                     <FontAwesomeIcon icon={faUpload} />
                 </span>
@@ -96,7 +123,7 @@ const ReportPage = () => {
                     className="form-control border-start-0"
                     onChange={handleFileChange}
                 />
-            </div>
+            </div> */}
 
             <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
@@ -135,6 +162,9 @@ const ReportPage = () => {
                 />
             </div>
 
+            <div className="col-12 d-flex justify-content-center">
+                <button type="submit" className="button btn-brand">{loading ? 'Creating Report...' : 'Submit'}</button>
+            </div>
 
         </form>
     </div>
