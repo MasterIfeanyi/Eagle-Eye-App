@@ -1,9 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch, faPhone, faUser } from "@fortawesome/free-solid-svg-icons"
+import { faSearch, faPhone, faUser, faFileAlt } from "@fortawesome/free-solid-svg-icons"
 import { Search, Shield, Bell, Menu, AlertTriangle, FileText, Clock, MessageSquare, ChevronRight } from "lucide-react"
 import { Card, Badge, Button, Form } from "react-bootstrap"
-
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
 
@@ -56,6 +56,24 @@ const HomePage = () => {
               Call Now
             </Button>
           </div>
+
+          <div className='safety-tips'>
+            <h2 className="fs-5 fw-semibold mb-3">Safety Tips</h2>
+            <Card className="border bg-info bg-opacity-10">
+              <Card.Body className="p-3">
+                <h3 className="fs-6 fw-medium mb-2">Stay Safe When Reporting</h3>
+                <ul className="small ps-3 mb-2">
+                  <li>Report from a safe location</li>
+                  <li>All reports are confidential</li>
+                  <li>You can report anonymously</li>
+                  <li>Save evidence when possible</li>
+                </ul>
+                {/* <Button variant="link" className="p-0 small text-decoration-none">
+                  Learn More
+                </Button> */}
+              </Card.Body>
+            </Card>
+          </div>
         </div>
 
 
@@ -64,9 +82,9 @@ const HomePage = () => {
 
 
 
+        {/* Safety Tips */}
 
-
-
+        
 
 
 
@@ -92,9 +110,9 @@ const HomePage = () => {
 
       <footer>
         <div className="footer">
-          <button className='phone-btn'>
-            <FontAwesomeIcon icon={faPhone} className="" />
-          </button>
+          <Link className='phone-btn'>
+            <FontAwesomeIcon icon={faFileAlt} className="" />
+          </Link>
 
           <button className='user-btn'>
             <FontAwesomeIcon icon={faUser} className="" />

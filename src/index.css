@@ -447,9 +447,30 @@ footer {
 }
 
 
+/* Home Page */
+
+.safety-tips ul {
+  list-style-type: "none";  /* Add bullet points */
+  padding-left: 20px;
+}
+
+.safety-tips li {
+  margin-bottom: 10px; /* Add margin to each list item */
+  position: relative;
+  padding-left: 25px;
+}
 
 
-
+.safety-tips li:before {
+  content: '📌'; /* Add content to the list item */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #000; */
+}
 
 
 
