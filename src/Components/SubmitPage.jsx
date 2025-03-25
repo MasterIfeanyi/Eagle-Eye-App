@@ -1,9 +1,18 @@
-import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 const SubmitPage = () => {
 
+  const navigate = useNavigate() // Get navigate function
+
+  const handleBackClick = () => {
+    navigate('/home') // Navigate to the home page
+  }
+
   return (
     <div className='submit'>
+        <FontAwesomeIcon className="back-arrow" onClick={handleBackClick} icon={faArrowLeft} />
         <div className="banner-message">
             <div className="section-title">
                 <div className="checkmark-circle">
@@ -15,6 +24,7 @@ const SubmitPage = () => {
                 <h3>Thank You</h3>
                 <p>Your report will be handled immediately.</p>
             </div>
+            
         </div>
     </div>
   )
