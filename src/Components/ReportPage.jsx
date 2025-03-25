@@ -7,6 +7,8 @@ import { collection, addDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
+import Header from "./Header"
+
 
 const ReportPage = () => {
 
@@ -80,6 +82,13 @@ const ReportPage = () => {
 
   return (
     <div className='report'>
+
+
+        {/* Header */}
+        <Header />
+
+        {/* Create Report Form */}
+
         <div className="section-title">
             <h2 className="fw-bold mb-1">Create Report</h2>
             <p className="text-muted mb-4">see something, say something</p>

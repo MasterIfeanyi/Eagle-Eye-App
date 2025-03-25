@@ -138,6 +138,9 @@ a {
   .App {
     padding: 0px;
   }
+  .report-categories {
+    max-height: 200px;
+  }
 }
 
 
@@ -185,7 +188,7 @@ a {
 }
 
 .search-bar-container {
-  margin: 10px auto;
+  margin: 0px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -198,7 +201,7 @@ a {
   padding: 8px;
   margin-top: 10px;
   margin-bottom: 10px;
-  border-radius: 20px;
+  border-radius: 12px;
   border: 1px solid #ccc;
 }
 
@@ -222,7 +225,7 @@ a {
 
 footer {
   width: 100%;
-  padding: 20px;
+  padding: 10px 20px;
   overflow: hidden;
 }
 
@@ -451,7 +454,6 @@ footer {
 
 .safety-tips ul {
   list-style-type: "none";  /* Add bullet points */
-  padding-left: 20px;
 }
 
 .safety-tips li {
@@ -475,10 +477,27 @@ footer {
 
 
 
+/* Report Categories */
 
 
+.report-categories {
+  max-height: 100px; /* Set a fixed height for the container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-right: 10px; /* Add padding to the right to avoid scrollbar overlap */
+}
 
+.report-categories::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
 
+.report-categories::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Set the color of the scrollbar thumb */
+  border-radius: 4px; /* Add border radius to the scrollbar thumb */
+}
+
+.report-categories::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Set the color of the scrollbar track */
+}
 
 
 
