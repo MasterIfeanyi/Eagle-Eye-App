@@ -14,7 +14,7 @@ const Login = () => {
     const [error, setError] = useState("")
 
 
-    const { setCurrentUser } = useAuth() // Get setCurrentUser from AuthContext
+    const { setCurrentUser, setLoading } = useAuth() // Get setCurrentUser from AuthContext
     
     const navigate = useNavigate() 
 

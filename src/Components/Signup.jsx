@@ -46,6 +46,9 @@ const Signup = () => {
             // Create user with Firebase Authentication
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
+            // Update user profile with username
+            await updateProfile(userCredential.user, { displayName: username }); 
+
             // Update AuthContext with the new user
             setCurrentUser(userCredential.user)
 
@@ -85,9 +88,9 @@ const Signup = () => {
             <p className="text-muted mb-4">Sign up to get started</p>
         </div>
 
-        {error && <div className="alert alert-danger">{error}</div>}
 
         <form onSubmit={handleSubmit} className='row g-3 px-3'>
+            {error && <div className="alert alert-danger">{error}</div>}
             <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
                     <FontAwesomeIcon icon={faUser} />
