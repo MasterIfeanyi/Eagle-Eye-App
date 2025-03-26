@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEnvelope, faLock, faEye, faEyeSlash, faExclamationTriangle, faLocation, faUpload, faCalendar } from "@fortawesome/free-solid-svg-icons"
-import { useState } from 'react'
+import { faEnvelope, faLock, faEye, faUser, faExclamationTriangle, faLocation, faUpload, faCalendar } from "@fortawesome/free-solid-svg-icons"
+import { useState,useEffect } from 'react'
 import { db } from '../firebase/config'
 import { collection, addDoc } from 'firebase/firestore'
 
@@ -13,7 +13,7 @@ import Header from "./Header"
 const ReportPage = () => {
 
     const [title, setTitle] = useState("")
-    const [location, setLocation] = useState("")
+    const [incidentLocation, setIncidentLocation] = useState("")
     const [description, setDescription] = useState("")
     // const [upload, setUpload] = useState(null)
     const [error, setError] = useState("")
@@ -21,10 +21,30 @@ const ReportPage = () => {
     const [date, setDate] = useState("")
     const [anonymous, setAnonymous] = useState("no")
 
+    const [latitude, setLatitude] = useState(null)
+    const [longitude, setLongitude] = useState(null)
+
+    const [userCurrentLocation, setuserCurrentLocation] = useState("")
+
     const { currentUser } = useAuth() // Get the current user from AuthContext
   const navigate = useNavigate() // Get navigate function
 
-    
+//   useEffect(() => {
+//     // Get user's current location when the component mounts
+//     if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(
+//         (position) => {
+//           setLatitude(position.coords.latitude)
+//           setLongitude(position.coords.longitude)
+//         },
+//         (error) => {
+//           console.error("Error getting geolocation: ", error)
+//         }
+//       )
+//     } else {
+//       console.error("Geolocation is not supported by this browser.")
+//     }
+//   }, [])
     
     
 
@@ -32,6 +52,39 @@ const ReportPage = () => {
     // const handleFileChange = (e) => {
     //     setUpload(e.target.files[0])
     // }
+
+
+    // convert coordinates to address to display in the input field that is human readable
+    const getAddressFromCoordinates = async (lat, long) => {
+        const apiKey = 'AIzaSyBIdZfuN1Eux1PxYgE8L0H1lowtg0YMe0I' 
+        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${apiKey}`)
+        const data = await response.json()
+        if (data.status === 'OK') {
+          return data.results[0].formatted_address
+        } else {
+          console.error("Error getting address from coordinates: ", data.status)
+          return ""
+        }
+    }
+
+    // get the user's current location
+    const handleLocationFocus = () => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (position) => {
+              setLatitude(position.coords.latitude)
+              setLongitude(position.coords.longitude)
+              const address = await getAddressFromCoordinates(position.coords.latitude, position.coords.longitude)
+              setuserCurrentLocation(address)
+            },
+            (error) => {
+              console.error("Error getting geolocation: ", error)
+            }
+          )
+        } else {
+          console.error("Geolocation is not supported by this browser.")
+        }
+    }
 
 
     const handleSubmit = async (e) => {
@@ -54,11 +107,14 @@ const ReportPage = () => {
             // Add a new document with a generated ID
             await addDoc(collection(db, "reports"), {
                 title,
-                location,
+                incidentLocation,
+                userCurrentLocation,
                 date,
                 description,
                 anonymous,
                 userId, // Attach the user ID (email or scrambled ID)
+                latitude,
+                longitude // Include the coordinates
             })
 
             setTitle("")
@@ -109,6 +165,8 @@ const ReportPage = () => {
                     onChange={(e) => setTitle(e.target.value)}
                 />
             </div>
+
+
             <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
                     <FontAwesomeIcon icon={faLocation} />
@@ -116,9 +174,24 @@ const ReportPage = () => {
                 <input
                     type="text"
                     className="form-control border-start-0"
-                    placeholder="Location"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
+                    placeholder="Enter location of the incident"
+                    value={incidentLocation}
+                    onChange={(e) => setIncidentLocation(e.target.value)}
+                />
+            </div>
+
+
+            <div className="input-group custom-input-group">
+                <span className="input-group-text bg-white border-end-0">
+                    <FontAwesomeIcon icon={faUser} />
+                </span>
+                <input
+                    type="text"
+                    className="form-control border-start-0"
+                    placeholder="Enter your current location"
+                    value={userCurrentLocation}
+                    onChange={(e) => setuserCurrentLocation(e.target.value)}
+                    onFocus={handleLocationFocus}
                 />
             </div>
 
