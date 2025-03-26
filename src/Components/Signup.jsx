@@ -4,7 +4,7 @@ import { faUser, faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free
 import { useState } from 'react'
 import { auth, createUserWithEmailAndPassword, updateProfile } from '../firebase/config';
 import { useAuth } from '../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Signup = () => {
 
@@ -161,6 +161,15 @@ const Signup = () => {
                 <button type="submit" className="button btn-brand">{loading ? 'Creating Account...' : 'Sign up'}</button>
             </div>
         </form>
+
+        <footer className="text-center mt-auto">
+            <p className="text-muted">
+                Already have an account ?
+                <Link to="/login" className="ms-1 text-decoration-underline fw-medium cursor-pointer">
+                    Log In
+                </Link>
+            </p>
+        </footer>
     </div>
   )
 

@@ -116,7 +116,7 @@ return (
 
         <footer className="text-center mt-auto">
             <p className="text-muted">
-              Don't have account?
+              Don't have an account?
               <Link to="/signup" className="ms-1 text-decoration-underline fw-medium cursor-pointer">
                 Sign up
               </Link>

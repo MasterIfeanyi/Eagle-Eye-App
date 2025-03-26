@@ -175,7 +175,7 @@ const ReportPage = () => {
 
             <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
-                    <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faLocation} />
                 </span>
                 <input
                     type="text"
