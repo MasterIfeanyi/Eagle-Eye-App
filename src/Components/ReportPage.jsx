@@ -137,12 +137,12 @@ const ReportPage = () => {
 
         {/* Create Report Form */}
 
-        <div className="section-title">
-            <h2 className="fw-bold mb-1">Create Report</h2>
-            <p className="text-muted mb-4">see something, say something</p>
+        <div className="report-section-title">
+            <h2 className="fw-bold">Create Report</h2>
+            <p className="text-muted">see something, say something</p>
         </div>
 
-        {error && <div className="alert alert-danger mx-3">{error}</div>}
+        {error && <div className="alert alert-danger mx-3 mb-3">{error}</div>}
 
         <form className='row g-3 px-3 handleForm' onSubmit={handleSubmit}>
             <div className="input-group custom-input-group">
@@ -180,7 +180,7 @@ const ReportPage = () => {
                 <input
                     type="text"
                     className="form-control border-start-0"
-                    placeholder={`${address ? address : "Autofill failed, Enter your location manually."}`}
+                    placeholder="Enter your current Location"
                     value={userCurrentLocation}
                     onChange={(e) => setuserCurrentLocation(e.target.value)}
                     onFocus={handleLocationFocus}

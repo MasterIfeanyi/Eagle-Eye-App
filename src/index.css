@@ -397,7 +397,30 @@ footer {
   height: 100%;
 }
 
+.report .report-section-title {
+  text-align: center;
+  margin: 10px 0px 0px 0px;
+  max-width: 600px;
+  padding: 10px;
+}
 
+/* .handleForm {
+  max-height: 80vh; 
+  overflow-y: auto; 
+  padding-right: 10px;
+} */
+
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.handleForm::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* Hide scrollbar for Firefox */
+.handleForm {
+  scrollbar-width: none; /* Firefox */
+}
 
 
 /* Submit Page */
@@ -510,6 +533,8 @@ footer {
 .report-categories::-webkit-scrollbar-track {
   background-color: #f1f1f1; /* Set the color of the scrollbar track */
 }
+
+
 
 
 
