@@ -27,27 +27,10 @@ const ReportPage = () => {
     const [userCurrentLocation, setuserCurrentLocation] = useState("")
 
     const { currentUser } = useAuth() // Get the current user from AuthContext
-  const navigate = useNavigate() // Get navigate function
+    const navigate = useNavigate() // Get navigate function
 
-//   useEffect(() => {
-//     // Get user's current location when the component mounts
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           setLatitude(position.coords.latitude)
-//           setLongitude(position.coords.longitude)
-//         },
-//         (error) => {
-//           console.error("Error getting geolocation: ", error)
-//         }
-//       )
-//     } else {
-//       console.error("Geolocation is not supported by this browser.")
-//     }
-//   }, [])
+    let address;
     
-    
-
 
     // const handleFileChange = (e) => {
     //     setUpload(e.target.files[0])
@@ -74,15 +57,23 @@ const ReportPage = () => {
             async (position) => {
               setLatitude(position.coords.latitude)
               setLongitude(position.coords.longitude)
-              const address = await getAddressFromCoordinates(position.coords.latitude, position.coords.longitude)
-              setuserCurrentLocation(address)
+                address = await getAddressFromCoordinates(position.coords.latitude, position.coords.longitude)
+              
+              if (address) {
+                setuserCurrentLocation(address)
+              } else {
+                setError("Autofill failed. Enter your location manually.")
+              }
+
             },
             (error) => {
               console.error("Error getting geolocation: ", error)
+              setError("Unable to get your location. Please enter your location manually.")
             }
           )
         } else {
           console.error("Geolocation is not supported by this browser.")
+          setError("Geolocation is not supported by this browser. Please enter your location manually.")
         }
     }
 
@@ -91,7 +82,7 @@ const ReportPage = () => {
         e.preventDefault()
         setError("")
     
-        if (!title || !location || !date || !description || !anonymous) {
+        if (!title || !incidentLocation || !userCurrentLocation || !date || !description || !anonymous) {
             setError("Please fill in all fields")
             return
           }
@@ -153,7 +144,7 @@ const ReportPage = () => {
 
         {error && <div className="alert alert-danger mx-3">{error}</div>}
 
-        <form className='row g-3 px-3' onSubmit={handleSubmit}>
+        <form className='row g-3 px-3 handleForm' onSubmit={handleSubmit}>
             <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
                     <FontAwesomeIcon icon={faExclamationTriangle} />
@@ -189,7 +180,7 @@ const ReportPage = () => {
                 <input
                     type="text"
                     className="form-control border-start-0"
-                    placeholder="Enter your current location"
+                    placeholder={`${address ? address : "Autofill failed, Enter your location manually."}`}
                     value={userCurrentLocation}
                     onChange={(e) => setuserCurrentLocation(e.target.value)}
                     onFocus={handleLocationFocus}
