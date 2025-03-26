@@ -118,7 +118,8 @@ const ReportPage = () => {
             })
 
             setTitle("")
-            setLocation("")
+            setIncidentLocation("")
+            setuserCurrentLocation("")
             setDescription("")
             // setUpload(null)
             setDate("")
