@@ -400,15 +400,15 @@ footer {
 .report .report-section-title {
   text-align: center;
   margin: 10px 0px 0px 0px;
-  max-width: 600px;
-  padding: 10px;
+  /* max-width: 600px; */
+  padding: 10px 0px;
 }
 
-/* .handleForm {
-  max-height: 80vh; 
+.handleForm {
+  max-height: 90vh; 
   overflow-y: auto; 
   padding-right: 10px;
-} */
+}
 
 
 /* Hide scrollbar for WebKit browsers (Chrome, Safari) */

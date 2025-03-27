@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faLock, faEye, faUser, faExclamationTriangle, faLocation, faUpload, faCalendar } from "@fortawesome/free-solid-svg-icons"
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { db } from '../firebase/config'
 import { collection, addDoc } from 'firebase/firestore'
 
@@ -13,7 +13,7 @@ import Header from "./Header"
 const ReportPage = () => {
 
     const [title, setTitle] = useState("")
-    const [incidentLocation, setIncidentLocation] = useState("")
+    // const [incidentLocation, setIncidentLocation] = useState("")
     const [description, setDescription] = useState("")
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
@@ -52,7 +52,7 @@ const ReportPage = () => {
             reader.onloadend = () => {
               setFileBase64(reader.result) // Save the Base64 string
             }
-            reader.readAsDataURL(selectedFile) // Convert the file to a Base64 string
+            reader.readAsDataURL(file) // Convert the file to a Base64 string
         }
       
     }
@@ -83,18 +83,18 @@ const ReportPage = () => {
               if (address) {
                 setuserCurrentLocation(address)
               } else {
-                setError("Autofill failed. Enter your location manually.")
+                // setError("Autofill failed. Enter your location manually.")
               }
 
             },
             (error) => {
               console.error("Error getting geolocation: ", error)
-              setError("Unable to get your location. Please enter your location manually.")
+            //   setError("Unable to get your location. Please enter your location manually.")
             }
           )
         } else {
           console.error("Geolocation is not supported by this browser.")
-          setError("Geolocation is not supported by this browser. Please enter your location manually.")
+        //   setError("Geolocation is not supported by this browser. Please enter your location manually.")
         }
     }
 
@@ -103,7 +103,7 @@ const ReportPage = () => {
         e.preventDefault()
         setError("")
     
-        if (!title || !incidentLocation || !userCurrentLocation || !date || !description || !anonymous) {
+        if (!title || !userCurrentLocation || !date || !description || !anonymous) {
             setError("Please fill in all fields")
             return
           }
@@ -119,7 +119,7 @@ const ReportPage = () => {
             // Add a new document with a generated ID
             await addDoc(collection(db, "reports"), {
                 title,
-                incidentLocation,
+                // incidentLocation,
                 userCurrentLocation,
                 date,
                 description,
@@ -132,10 +132,10 @@ const ReportPage = () => {
             })
 
             setTitle("")
-            setIncidentLocation("")
+            // setIncidentLocation("")
             setuserCurrentLocation("")
             setDescription("")
-            setFile(null) // Reset the file state
+            setFileBase64(null) // Reset the file state
             setDate("")
             setAnonymous("no")
 
@@ -163,9 +163,9 @@ const ReportPage = () => {
         <div className="report-section-title">
             <h2 className="fw-bold">Create Report</h2>
             <p className="text-muted">see something, say something</p>
+            {error && <div className="alert alert-danger mx-3 mb-3">{error}</div>}
         </div>
 
-        {error && <div className="alert alert-danger mx-3 mb-3">{error}</div>}
 
         <form className='row g-3 px-3 handleForm' onSubmit={handleSubmit}>
             <div className="input-group custom-input-group">
@@ -182,7 +182,7 @@ const ReportPage = () => {
             </div>
 
 
-            <div className="input-group custom-input-group">
+            {/* <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
                     <FontAwesomeIcon icon={faLocation} />
                 </span>
@@ -193,7 +193,7 @@ const ReportPage = () => {
                     value={incidentLocation}
                     onChange={(e) => setIncidentLocation(e.target.value)}
                 />
-            </div>
+            </div> */}
 
 
             <div className="input-group custom-input-group">
