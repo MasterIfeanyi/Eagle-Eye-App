@@ -21,7 +21,7 @@ const ReportPage = () => {
 
     const [coords, setCoords] = useState(null)
     
-    
+    const [isLocationDisabled, setIsLocationDisabled] = useState(false) // State to control input field
     
     // const [file, setFile] = useState(null) // State for file upload
     const [fileBase64, setFileBase64] = useState("") // State for Base64 string
@@ -84,23 +84,32 @@ const ReportPage = () => {
           navigator.geolocation.getCurrentPosition(
             async (position) => {
 
-               setCoords({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-               })
-                address = await getAddressFromCoordinates(position.coords.latitude, position.coords.longitude)
+               const { latitude, longitude } = position.coords
+
+               setCoords({ latitude, longitude })
+                address = await getAddressFromCoordinates(latitude, longitude)
               
               if (address) {
                 setuserCurrentLocation(address)
+                // Remove numbers or codes before the actual location
+                const cleanedAddress = address.replace(/^[^,]+,\s*/, "") // Remove everything before the first comma
+                setuserCurrentLocation(cleanedAddress) // Set the cleaned address
+                setIsLocationDisabled(true) // Disable the input field after fetching the location
               }
+
+              setIsLocationDisabled(false) // Enable the input field after getting the location
 
             },
             (error) => {
               console.error(`Error getting geolocation: ", error, ${error.message}`)
+
+              setIsLocationDisabled(false) // Enable the input field even if geolocation fails
             }
           )
         } else {
           console.error("Geolocation is not supported by this browser.")
+
+          setIsLocationDisabled(false) // Enable the input field if geolocation is not supported
         }
     }
 
@@ -121,12 +130,17 @@ const ReportPage = () => {
             // Generate a scrambled user ID if the user chooses to submit anonymously
             const userId = anonymous === "yes" ? `anon-${Math.random().toString(36).substring(2, 15)}` : currentUser.email
 
+            // user location and coordinates
+            const location =  {
+                address: userCurrentLocation,
+                coords: coords
+            }
             
 
             // Add a new document with a generated ID
             await addDoc(collection(db, "reports"), {
                 title,
-                location: userCurrentLocation ? userCurrentLocation : coords, // Attach the coordinates
+                location: address ? address : location, // Attach the coordinates
                 date,
                 description,
                 anonymous,
@@ -193,9 +207,10 @@ const ReportPage = () => {
                     type="text"
                     className="form-control border-start-0"
                     placeholder="Enter your current Location"
-                    value={userCurrentLocation}
+                    value={address ? address : userCurrentLocation} // Use the address if available
                     onChange={(e) => setuserCurrentLocation(e.target.value)}
                     onFocus={handleLocationFocus}
+                    disabled={isLocationDisabled} // Disable the input field until location is fetched
                 />
             </div>
 
