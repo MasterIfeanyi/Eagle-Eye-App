@@ -15,14 +15,17 @@ const ReportPage = () => {
     const [title, setTitle] = useState("")
     const [incidentLocation, setIncidentLocation] = useState("")
     const [description, setDescription] = useState("")
-    // const [upload, setUpload] = useState(null)
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const [date, setDate] = useState("")
     const [anonymous, setAnonymous] = useState("no")
-
+    
     const [latitude, setLatitude] = useState(null)
     const [longitude, setLongitude] = useState(null)
+    
+    
+    // const [file, setFile] = useState(null) // State for file upload
+    const [fileBase64, setFileBase64] = useState("") // State for Base64 string
 
     const [userCurrentLocation, setuserCurrentLocation] = useState("")
 
@@ -32,9 +35,27 @@ const ReportPage = () => {
     let address;
     
 
-    // const handleFileChange = (e) => {
-    //     setUpload(e.target.files[0])
-    // }
+    const handleFileChange = (e) => {
+
+        const selectedFile = e.target.files[0];
+        // setFile(selectedFile)
+
+
+        // if (file) {
+        //     const imageUrl = URL.createObjectURL(file);
+        //     // setAccountImage(imageUrl);
+        //     setFile(imageUrl);
+        // }
+
+        if (file) {
+            const reader = new FileReader()
+            reader.onloadend = () => {
+              setFileBase64(reader.result) // Save the Base64 string
+            }
+            reader.readAsDataURL(selectedFile) // Convert the file to a Base64 string
+        }
+      
+    }
 
 
     // convert coordinates to address to display in the input field that is human readable
@@ -105,14 +126,16 @@ const ReportPage = () => {
                 anonymous,
                 userId, // Attach the user ID (email or scrambled ID)
                 latitude,
-                longitude // Include the coordinates
+                longitude, // Include the coordinates
+                fileBase64, // Include the Base64 string
+                createdAt: new Date().toISOString() // Include the timestamp
             })
 
             setTitle("")
             setIncidentLocation("")
             setuserCurrentLocation("")
             setDescription("")
-            // setUpload(null)
+            setFile(null) // Reset the file state
             setDate("")
             setAnonymous("no")
 
@@ -188,7 +211,7 @@ const ReportPage = () => {
             </div>
 
 
-            {/* <div className="input-group custom-input-group">
+            <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
                     <FontAwesomeIcon icon={faUpload} />
                 </span>
@@ -197,7 +220,7 @@ const ReportPage = () => {
                     className="form-control border-start-0"
                     onChange={handleFileChange}
                 />
-            </div> */}
+            </div>
 
             <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
