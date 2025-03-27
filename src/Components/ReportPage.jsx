@@ -37,7 +37,7 @@ const ReportPage = () => {
 
     const handleFileChange = (e) => {
 
-        const selectedFile = e.target.files[0];
+        const file = e.target.files[0];
         // setFile(selectedFile)
 
 
