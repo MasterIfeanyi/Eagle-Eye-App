@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEnvelope, faLock, faEye, faUser, faExclamationTriangle, faLocation, faUpload, faCalendar } from "@fortawesome/free-solid-svg-icons"
-import { useState, useEffect } from 'react'
+import { faExclamationTriangle, faLocation, faUpload, faCalendar } from "@fortawesome/free-solid-svg-icons"
+import { useState } from 'react'
 import { db } from '../firebase/config'
 import { collection, addDoc } from 'firebase/firestore'
 
@@ -29,6 +29,7 @@ const ReportPage = () => {
     const [userCurrentLocation, setuserCurrentLocation] = useState("")
 
     const { currentUser } = useAuth() // Get the current user from AuthContext
+
     const navigate = useNavigate() // Get navigate function
 
     let address;
@@ -62,7 +63,7 @@ const ReportPage = () => {
             const timestamp = new Date().getTime()
 
             const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${apiKey}&t=${timestamp}`)
-            
+
             const data = await response.json()
     
             if (data.status == "REQUEST_DENIED") {
@@ -125,12 +126,11 @@ const ReportPage = () => {
             // Add a new document with a generated ID
             await addDoc(collection(db, "reports"), {
                 title,
-                coordinates: coords ? coords : userCurrentLocation,
+                location: userCurrentLocation ? userCurrentLocation : coords, // Attach the coordinates
                 date,
                 description,
                 anonymous,
-                userId, // Attach the user ID (email or scrambled ID)
-                coords, // Attach the coordinates
+                userId, // Attach the user ID (email or scrambled ID) 
                 fileBase64, // Include the Base64 string
                 createdAt: new Date().toISOString() // Include the timestamp
             })
