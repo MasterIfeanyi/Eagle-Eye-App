@@ -96,9 +96,10 @@ const ReportPage = () => {
                 const cleanedAddress = address.replace(/^[A-Z0-9\+]+\s*/, "")
                 setuserCurrentLocation(cleanedAddress) // Set the cleaned address
                 setIsLocationDisabled(true) // Disable the input field after fetching the location
+              } else {
+                  setIsLocationDisabled(false) // Enable the input field after getting the location
               }
 
-              setIsLocationDisabled(false) // Enable the input field after getting the location
 
             },
             (error) => {
