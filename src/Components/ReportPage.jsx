@@ -92,7 +92,8 @@ const ReportPage = () => {
               if (address) {
                 setuserCurrentLocation(address)
                 // Remove numbers or codes before the actual location
-                const cleanedAddress = address.replace(/^[^,]+,\s*/, "") // Remove everything before the first comma
+                // const cleanedAddress = address.replace(/^[^,]+,\s*/, "") // Remove everything before the first comma
+                const cleanedAddress = address.replace(/^[A-Z0-9\+]+\s*/, "")
                 setuserCurrentLocation(cleanedAddress) // Set the cleaned address
                 setIsLocationDisabled(true) // Disable the input field after fetching the location
               }
