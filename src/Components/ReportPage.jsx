@@ -13,15 +13,14 @@ import Header from "./Header"
 const ReportPage = () => {
 
     const [title, setTitle] = useState("")
-    // const [incidentLocation, setIncidentLocation] = useState("")
     const [description, setDescription] = useState("")
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const [date, setDate] = useState("")
     const [anonymous, setAnonymous] = useState("no")
+
+    const [coords, setCoords] = useState(null)
     
-    const [latitude, setLatitude] = useState(null)
-    const [longitude, setLongitude] = useState(null)
     
     
     // const [file, setFile] = useState(null) // State for file upload
@@ -38,14 +37,7 @@ const ReportPage = () => {
     const handleFileChange = (e) => {
 
         const file = e.target.files[0];
-        // setFile(selectedFile)
 
-
-        // if (file) {
-        //     const imageUrl = URL.createObjectURL(file);
-        //     // setAccountImage(imageUrl);
-        //     setFile(imageUrl);
-        // }
 
         if (file) {
             const reader = new FileReader()
@@ -60,14 +52,28 @@ const ReportPage = () => {
 
     // convert coordinates to address to display in the input field that is human readable
     const getAddressFromCoordinates = async (lat, long) => {
-        const apiKey = 'AIzaSyBIdZfuN1Eux1PxYgE8L0H1lowtg0YMe0I' 
-        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${apiKey}`)
-        const data = await response.json()
-        if (data.status === 'OK') {
-          return data.results[0].formatted_address
-        } else {
-          console.error("Error getting address from coordinates: ", data.status)
-          return ""
+
+        const apiKey = 'AIzaSyBIdZfuN1Eux1PxYgE8L0H1lowtg0YMe0I'
+        
+
+        
+        try {
+            // Add a timestamp to prevent caching issues on localhost
+            const timestamp = new Date().getTime()
+
+            const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${apiKey}&t=${timestamp}`)
+            
+            const data = await response.json()
+    
+            if (data.status == "REQUEST_DENIED") {
+                console.error(`REQUEST_DENIED: ${data.error_message || "API key issue"}`)
+            } else if (data.status === 'OK') {
+                return data.results[0].formatted_address
+            } else {
+              console.error(`Error getting address from coordinates: ${data.status}`)
+            }
+        } catch (error) {
+            console.error(`Network error: ${error instanceof Error ? error.message : String(error)}`)
         }
     }
 
@@ -76,25 +82,24 @@ const ReportPage = () => {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             async (position) => {
-              setLatitude(position.coords.latitude)
-              setLongitude(position.coords.longitude)
+
+               setCoords({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+               })
                 address = await getAddressFromCoordinates(position.coords.latitude, position.coords.longitude)
               
               if (address) {
                 setuserCurrentLocation(address)
-              } else {
-                // setError("Autofill failed. Enter your location manually.")
               }
 
             },
             (error) => {
-              console.error("Error getting geolocation: ", error)
-            //   setError("Unable to get your location. Please enter your location manually.")
+              console.error(`Error getting geolocation: ", error, ${error.message}`)
             }
           )
         } else {
           console.error("Geolocation is not supported by this browser.")
-        //   setError("Geolocation is not supported by this browser. Please enter your location manually.")
         }
     }
 
@@ -115,24 +120,22 @@ const ReportPage = () => {
             // Generate a scrambled user ID if the user chooses to submit anonymously
             const userId = anonymous === "yes" ? `anon-${Math.random().toString(36).substring(2, 15)}` : currentUser.email
 
+            
 
             // Add a new document with a generated ID
             await addDoc(collection(db, "reports"), {
                 title,
-                // incidentLocation,
-                userCurrentLocation,
+                coordinates: coords ? coords : userCurrentLocation,
                 date,
                 description,
                 anonymous,
                 userId, // Attach the user ID (email or scrambled ID)
-                latitude,
-                longitude, // Include the coordinates
+                coords, // Attach the coordinates
                 fileBase64, // Include the Base64 string
                 createdAt: new Date().toISOString() // Include the timestamp
             })
 
             setTitle("")
-            // setIncidentLocation("")
             setuserCurrentLocation("")
             setDescription("")
             setFileBase64(null) // Reset the file state
@@ -180,20 +183,6 @@ const ReportPage = () => {
                     onChange={(e) => setTitle(e.target.value)}
                 />
             </div>
-
-
-            {/* <div className="input-group custom-input-group">
-                <span className="input-group-text bg-white border-end-0">
-                    <FontAwesomeIcon icon={faLocation} />
-                </span>
-                <input
-                    type="text"
-                    className="form-control border-start-0"
-                    placeholder="Enter location of the incident"
-                    value={incidentLocation}
-                    onChange={(e) => setIncidentLocation(e.target.value)}
-                />
-            </div> */}
 
 
             <div className="input-group custom-input-group">
