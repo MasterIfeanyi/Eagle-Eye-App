@@ -23,7 +23,6 @@ const ReportPage = () => {
     
     const [isLocationDisabled, setIsLocationDisabled] = useState(false) // State to control input field
     
-    // const [file, setFile] = useState(null) // State for file upload
     const [fileBase64, setFileBase64] = useState("") // State for Base64 string
 
     const [userCurrentLocation, setuserCurrentLocation] = useState("")
