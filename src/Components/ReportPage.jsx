@@ -53,7 +53,7 @@ const ReportPage = () => {
     // convert coordinates to address to display in the input field that is human readable
     const getAddressFromCoordinates = async (lat, long) => {
 
-        const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
         
 
         

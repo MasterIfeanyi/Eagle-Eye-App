@@ -12,12 +12,12 @@ import { getFirestore } from 'firebase/firestore';
 
 // Replace with your Firebase config values
 const firebaseConfig = {
-  apiKey: "AIzaSyDdYVCeHIc3HD-IiFSntNLmemPI7nz4zkg",
-  authDomain: "eagle-eye-9f1eb.firebaseapp.com",
-  projectId: "eagle-eye-9f1eb",
-  storageBucket: "eagle-eye-9f1eb.firebasestorage.app",
-  messagingSenderId: "600451674098",
-  appId: "1:600451674098:web:10edbdb442e6477f45056b"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
