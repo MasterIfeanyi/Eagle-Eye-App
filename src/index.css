@@ -491,6 +491,13 @@ footer {
   justify-content: center;
   max-height: 90vh; 
   overflow-y: auto;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.main::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .safety-tips ul {
