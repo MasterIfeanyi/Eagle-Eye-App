@@ -187,12 +187,7 @@ a {
 }
 
 
-.home-page {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  height: 100%;
-}
+
 
 .search-bar-container {
   margin: 0px auto;
@@ -394,8 +389,6 @@ footer {
   display: flex;
   flex-direction: column;
   background-color: white;
-  max-height: 90vh; 
-  overflow-y: auto;
 }
 
 .report .report-section-title {
@@ -489,6 +482,14 @@ footer {
 
 
 /* Home Page */
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  max-height: 90vh; 
+  overflow-y: auto;
+}
 
 .safety-tips ul {
   list-style-type: "none";  /* Add bullet points */
