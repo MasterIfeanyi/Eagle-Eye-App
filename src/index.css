@@ -187,7 +187,7 @@ a {
 }
 
 
-
+/* Home page */
 
 .search-bar-container {
   margin: 0px auto;
@@ -254,6 +254,20 @@ footer {
   width: 42px;
   height: 42px;
 }
+
+.home-report-btn {
+  border-radius: 10px;
+  background-color: green;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+}
+
+
+
 
 /* signup screen */
 

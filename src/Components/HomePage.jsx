@@ -37,9 +37,10 @@ const HomePage = () => {
               <h3 className="fs-6 fw-medium text-danger mb-0">Emergency?</h3>
               <p className="small text-danger mb-0">Call emergency services immediately</p>
             </div>
-            <Button variant="danger" size="sm" className="ms-auto">
+            <Link className='home-report-btn' to="/report">Make a report</Link>
+            {/* <Button variant="danger" size="sm" className="ms-auto">
               Call Now
-            </Button>
+            </Button> */}
           </div>
 
           <div className='safety-tips mb-3'>
