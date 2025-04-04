@@ -29,7 +29,7 @@ const HomePage = () => {
 
         <div className="container py-3">
           {/* Emergency Banner */}
-          <div className="bg-danger bg-opacity-10 border border-danger rounded p-3 mb-4 d-flex align-items-center">
+          <div className="bg-danger mt-2 bg-opacity-10 border border-danger rounded p-3 mb-4 d-flex align-items-center">
             <div className="bg-danger d-flex justify-content-center align-items-center rounded-circle p-2 me-3">
               <AlertTriangle size={20} color="white" />
             </div>
@@ -37,13 +37,13 @@ const HomePage = () => {
               <h3 className="fs-6 fw-medium text-danger mb-0">Emergency?</h3>
               <p className="small text-danger mb-0">Call emergency services immediately</p>
             </div>
-            <Link className='home-report-btn' to="/report">Make a report</Link>
+            <Link className='home-page-btn' to="/report">Make a report</Link>
             {/* <Button variant="danger" size="sm" className="ms-auto">
               Call Now
             </Button> */}
           </div>
 
-          <div className='safety-tips mb-3'>
+          <div className='safety-tips my-4'>
             <h2 className="fs-5 fw-semibold mb-3">Safety Tips</h2>
             <Card className="border bg-info bg-opacity-10">
               <Card.Body className="p-3">
@@ -62,7 +62,7 @@ const HomePage = () => {
           </div>
 
           {/* Report Categories */}
-          <div className="">
+          <div className="my-4">
             <h2 className="fs-5 fw-semibold mb-3">Report Categories</h2>
             <div className="d-flex flex-column gap-2 report-categories">
               {[

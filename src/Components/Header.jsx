@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header className="bg-dark text-white p-3 shadow" style={{
       position: "sticky",
-      top: 0,
+      top: 0, 
       zIndex: 1000,
     }}>
       <div className="d-flex justify-content-between align-items-center">
