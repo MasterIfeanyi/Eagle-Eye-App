@@ -19,17 +19,11 @@ const HomePage = () => {
       {/* Main Content */}
       <div className="main flex-1 flex-column justify-content-start">
 
-        {/* search bar */}
-        <div className='px-4 py-2 search-bar-container'>
-          <div className='search-bar shadow-sm'>
-            <input type="text" placeholder='Search' className='search-input' />
-            <FontAwesomeIcon icon={faSearch} className='search-icon' />
-          </div>
-        </div>
+        
 
         <div className="container py-3">
           {/* Emergency Banner */}
-          <div className="bg-danger mt-2 bg-opacity-10 border border-danger rounded p-3 mb-4 d-flex align-items-center">
+          <div className="bg-danger mt-2 bg-opacity-10 border border-danger rounded p-3 mb-4 d-flex align-items-center gap-3">
             <div className="bg-danger d-flex justify-content-center align-items-center rounded-circle p-2 me-3">
               <AlertTriangle size={20} color="white" />
             </div>
@@ -37,10 +31,7 @@ const HomePage = () => {
               <h3 className="fs-6 fw-medium text-danger mb-0">Emergency?</h3>
               <p className="small text-danger mb-0">Call emergency services immediately</p>
             </div>
-            <Link className='home-page-btn' to="/report">Make a report</Link>
-            {/* <Button variant="danger" size="sm" className="ms-auto">
-              Call Now
-            </Button> */}
+            <div></div>
           </div>
 
           <div className='safety-tips my-4'>
