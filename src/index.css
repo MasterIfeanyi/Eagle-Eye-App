@@ -73,6 +73,16 @@ li{
 }
 
 
+.report-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 10px;
+  border-radius: 12px;  
+  font-size: smaller;
+  white-space: nowrap;  
+  text-align: center;
+}
+
 
 /* CSS Helper class */
 

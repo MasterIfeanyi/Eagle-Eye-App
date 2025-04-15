@@ -32,7 +32,7 @@ const HomePage = () => {
               <p className="small text-danger mb-0">Call emergency services immediately</p>
             </div>
             <div>
-              <Link to="/report" className='btn btn-brand'>Make a report</Link>
+              <Link to="/report" className='report-btn'>Make a report</Link>
             </div>
           </div>
 
