@@ -19,13 +19,7 @@ const HomePage = () => {
       {/* Main Content */}
       <div className="main flex-1 flex-column justify-content-start">
 
-        {/* search bar */}
-        <div className='px-4 py-2 search-bar-container'>
-          <div className='search-bar shadow-sm'>
-            <input type="text" placeholder='Search' className='search-input' />
-            <FontAwesomeIcon icon={faSearch} className='search-icon' />
-          </div>
-        </div>
+        
 
         <div className="container py-3">
           {/* Emergency Banner */}
