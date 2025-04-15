@@ -125,7 +125,7 @@ a {
     padding: 30px;
   }
   .report-categories {
-    max-height: 120px; /* Set a fixed height for the container */
+    max-height: 170px; /* Set to fit-content to avoid cutting off content */
     overflow-y: auto; /* Enable vertical scrolling */
     padding-right: 10px; /* Add padding to the right to avoid scrollbar overlap */
   }
