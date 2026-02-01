@@ -1,17 +1,17 @@
 import { useState } from 'react'
-import SplashScreen from "./Components/SplashScreen"
-import HomePage from "./Components/HomePage"
-import SignUp from './Components/Signup'
-import Login from './Components/Login'
+import SplashScreen from "./_components/SplashScreen"
+import HomePage from "./_components/HomePage"
+import SignUp from './_components/Signup'
+import Login from './_components/Login'
 import Layout from "./Layout/Layout"
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import Welcome from './Components/Welcome'
+import Welcome from './_components/Welcome'
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './utils/ProtectedRoute'
 import MissingRoute from './utils/MissingRoute'
-import ReportPage from './Components/ReportPage'
-import SubmitPage from './Components/SubmitPage'
+import ReportPage from './_components/ReportPage'
+import SubmitPage from './_components/SubmitPage'
 
 function App() {
   
