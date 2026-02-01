@@ -1,0 +1,82 @@
+/* Input.module.css */
+
+.inputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.label {
+    font-size: 0.875rem;
+    color: var(--blackDark);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Base input styles */
+.input {
+    width: 100%;
+    border: 1px solid #dee2e6;
+    outline: none;
+    box-shadow: none;
+    transition: all 0.2s;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.input:focus {
+    border-color: #ced4da;
+    outline: none;
+    box-shadow: none;
+}
+
+.input:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Variant styles */
+.default {
+    background-color: white;
+    border-color: #dee2e6;
+}
+
+.primary {
+    background-color: white;
+    border-color: var(--primary);
+}
+
+.outline {
+    background-color: transparent;
+    border-color: #212529;
+}
+
+/* Size styles */
+.small {
+    padding: 8px 10px;
+    font-size: 0.875rem;
+}
+
+.medium {
+    padding: 12px 10px;
+    font-size: 1rem;
+}
+
+.large {
+    padding: 14px 12px;
+    font-size: 1.125rem;
+}
+
+/* Icon positioning */
+.icon {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    pointer-events: none;
+}
+
+/* Input with icon - add right padding */
+.withIcon {
+    padding-right: 2.5rem;
+}
