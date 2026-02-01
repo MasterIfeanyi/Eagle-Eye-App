@@ -1,6 +1,7 @@
 'use client'
 import PropTypes from 'prop-types';
 import styles from './Input.module.css'
+import clsx from 'clsx';
 
 const Input = ({
     id,
@@ -19,6 +20,15 @@ const Input = ({
     ...rest
   }) => {
 
+    const inputClasses = clsx(
+      styles.input,
+      styles[variant],
+      styles[size],
+      disabled && styles.disabled,
+      icon && styles.withIcon,
+      className
+    );
+
   return (
     <div className={styles.inputWrapper}>
       {label && (
@@ -35,7 +45,7 @@ const Input = ({
         value={value}
         onChange={onChange}
         {...rest}
-        className={`${styles.input} ${className}`}
+        className={inputClasses}
       />
       {icon && (
         <image 
