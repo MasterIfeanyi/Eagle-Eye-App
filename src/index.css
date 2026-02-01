@@ -265,8 +265,32 @@ footer {
   height: 42px;
 }
 
+/* Loading circle */
 
+.loading__container {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
+.loading__circle {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid transparent;
+  border-bottom-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 
 
