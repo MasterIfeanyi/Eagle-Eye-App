@@ -1,4 +1,4 @@
-import { useState } from 'react'
+
 import SplashScreen from "./_components/SplashScreen"
 import HomePage from "./_components/HomePage"
 import SignUp from './_components/Signup'
