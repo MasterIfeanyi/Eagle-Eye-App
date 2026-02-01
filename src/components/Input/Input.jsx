@@ -1,8 +1,6 @@
 'use client'
-
-import React from 'react'
-import Image from 'next/image'
 import PropTypes from 'prop-types';
+import styles from './Input.module.css'
 
 const Input = ({
     id,
@@ -13,17 +11,21 @@ const Input = ({
     required = false,
     onChange,
     value,
-    className="",
+    className = "",
     icon = false,
     imgSrc,
+    variant = "default",
+    size = "medium",
     ...rest
   }) => {
 
   return (
-    <div>
-      {label && <label htmlFor={id} className={`text-sm text-blackDark font-medium`}>
-        {label}
-      </label>}
+    <div className={styles.inputWrapper}>
+      {label && (
+        <label htmlFor={id} className={styles.label}>
+          {label}
+        </label>
+      )}
       <input 
         id={id}
         type={type}
@@ -33,9 +35,15 @@ const Input = ({
         value={value}
         onChange={onChange}
         {...rest}
-        className="w-full px-4 py-2 h-10 text-sm font-light mt-2 bg-white border rounded outline-none transition disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-grey focus:border-primary"
+        className={`${styles.input} ${className}`}
       />
-      {icon && <Image src={imgSrc} alt="icon" className="absolute right-3 bottom-2 w-6 h-6" />}
+      {icon && (
+        <image 
+          src={imgSrc} 
+          alt="icon" 
+          className={styles.icon}
+        />
+      )}
     </div>
   )
 }
@@ -51,7 +59,10 @@ Input.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   className: PropTypes.string,
   icon: PropTypes.bool,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  variant: PropTypes.oneOf(['default', 'primary', 'outline']),
   imgSrc: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 export default Input
+
