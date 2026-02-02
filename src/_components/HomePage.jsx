@@ -1,8 +1,7 @@
-import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch, faPhone, faUser, faFileAlt } from "@fortawesome/free-solid-svg-icons"
-import { Search, Shield, Bell, Menu, AlertTriangle, FileText, Clock, MessageSquare, ChevronRight } from "lucide-react"
-import { Card, Badge, Button, Form } from "react-bootstrap"
+import { faUser, faFileAlt } from "@fortawesome/free-solid-svg-icons"
+import {  AlertTriangle, ChevronRight } from "lucide-react"
+import { Card } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 import Header from './Header'
 
@@ -11,15 +10,12 @@ const HomePage = () => {
     
   return (
     <div className='home-page'>
-
       
       {/* Header */}
       <Header />
 
       {/* Main Content */}
       <div className="main flex-1 flex-column justify-content-start">
-
-        
 
         <div className="container py-3">
           {/* Emergency Banner */}
@@ -47,9 +43,6 @@ const HomePage = () => {
                   <li>You can report anonymously</li>
                   <li>Save evidence when possible</li>
                 </ul>
-                {/* <Button variant="link" className="p-0 small text-decoration-none">
-                  Learn More
-                </Button> */}
               </Card.Body>
             </Card>
           </div>
@@ -65,7 +58,7 @@ const HomePage = () => {
                 { title: "Sexual Assault", desc: "Report sexual violence or harassment", icon: "🛑" },
                 { title: "Other Crimes", desc: "Report other types of criminal activity", icon: "📋" },
               ].map((category, index) => (
-                <Card key={index} className="border" onClick={() => navigate("/report")}>
+                <Card key={index} className="border">
                   <Card.Body className="p-3 d-flex align-items-center">
                     <div
                       className="rounded-circle bg-light d-flex align-items-center justify-content-center me-3"
@@ -84,51 +77,7 @@ const HomePage = () => {
             </div>
           </div>
 
-
-
-
         </div>
-
-
-
-        {/* <p className="text-center text-gray-600">see something, say something</p> */}
-
-
-
-        {/* Recent Reports */}
-        {/* <div className="mb-4">
-          <div className="d-flex justify-content-between align-items-center mb-3">
-            <h2 className="fs-5 fw-semibold mb-0">Recent Reports</h2>
-            <Button variant="link" size="sm" className="text-decoration-none p-0">
-              View All
-            </Button>
-          </div>
-          <div className="d-flex flex-column gap-3">
-            {[
-              { id: "CR-2025-0342", type: "Corruption", status: "Under Review", date: "Mar 24, 2025" },
-              { id: "CR-2025-0339", type: "Theft", status: "Assigned", date: "Mar 22, 2025" },
-            ].map((report, index) => (
-              <Card key={index} className="border" onClick={() => navigate("/status")}>
-                <Card.Body className="p-3">
-                  <div className="d-flex justify-content-between align-items-start mb-2">
-                    <h3 className="fs-6 fw-medium mb-0">{report.id}</h3>
-                    <Badge bg={report.status === "Under Review" ? "secondary" : "info"}>{report.status}</Badge>
-                  </div>
-                  <div className="d-flex justify-content-between small">
-                    <span className="text-muted">{report.type}</span>
-                    <span className="text-muted">{report.date}</span>
-                  </div>
-                </Card.Body>
-              </Card>
-            ))}
-          </div>
-        </div> */}
-
-        
-
-
-        
-
       </div>
 
 
