@@ -3,7 +3,7 @@ import { faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-s
 import { useState } from 'react'
 import { useAuth } from '@/context/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
-import { authAPI } from '@/api/authAPI'
+import { authAPI } from '@/api/api.js'
 
 const Login = () => {
 

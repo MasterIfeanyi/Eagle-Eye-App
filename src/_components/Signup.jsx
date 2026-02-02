@@ -1,10 +1,15 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUser, faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
+import { faUser, faEnvelope, faLock, faEye, faEyeSlash, faPhone } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react'
 import { auth, createUserWithEmailAndPassword, updateProfile } from '../firebase/config';
-import { useAuth } from '../context/AuthProvider'
+import { useAuth } from '@/context/AuthContext'
 import { useNavigate, Link } from 'react-router-dom'
+
+import { useFormik } from 'formik'
+import { signupValidationSchema } from '../validations/authSchemas'
+import { authAPI } from '../api/api'
+
 
 const Signup = () => {
 
@@ -18,6 +23,8 @@ const Signup = () => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
 
+
+    const [apiError, setApiError] = useState("")
 
     const { setCurrentUser } = useAuth() // Get setCurrentUser from AuthContext
 
@@ -73,9 +80,105 @@ const Signup = () => {
         }
     }
 
+
+    // Formik configuration
+    const formik = useFormik({
+        initialValues: {
+            firstname: '',
+            lastname: '',
+            email: '',
+            phoneNumber: '',
+            password: '',
+            confirmPassword: ''
+        },
+        validationSchema: signupValidationSchema,
+        validateOnChange: true,
+        validateOnBlur: true,
+
+        onSubmit: async (values, { setSubmitting, setFieldError }) => {
+            setApiError('')
+
+            try {
+                // Prepare user data for backend
+                const userData = {
+                    firstname: values.firstname.trim(),
+                    lastname: values.lastname.trim(),
+                    email: values.email.trim().toLowerCase(),
+                    password: values.password,
+                    phoneNumber: values.phoneNumber.replace(/[\s\-+()]/g, '')
+                }
+
+                // Make API request to backend
+                const response = await authAPI.signup(userData)
+
+                // Extract user data from response
+                const { user } = response.data
+
+                // Create user object for context
+                const userContextData = {
+                    userId: user.userId,
+                    email: user.email
+                }
+
+                // Update AuthContext with the user data
+                setCurrentUser(userContextData)
+
+                // Navigate to home page
+                navigate('/home')
+
+            } catch (error) {
+                // Handle different error scenarios
+                if (error.response) {
+                    const { status, data } = error.response
+
+                    switch (status) {
+                        case 400:
+                            // Check if it's a field-specific error
+                            if (data.field) {
+                                setFieldError(data.field, data.message)
+                            } else {
+                                setApiError(data.message || 'Invalid input. Please check your details.')
+                            }
+                            break
+                        case 409: {
+                            // User already exists - set field-specific error if possible
+                            const message = data.message || 'An account with this email or phone number already exists'
+                            if (message.toLowerCase().includes('email')) {
+                                setFieldError('email', 'This email is already registered')
+                            } else if (message.toLowerCase().includes('phone')) {
+                                setFieldError('phoneNumber', 'This phone number is already registered')
+                            } else {
+                                setApiError(message)
+                            }
+                            break
+                        }
+                        case 500:
+                            setApiError('Server error. Please try again later.')
+                            break
+                        default:
+                            setApiError(data.message || 'Failed to create account')
+                    }
+                } else if (error.request) {
+                    setApiError('Unable to connect to server. Please check your internet connection.')
+                } else {
+                    setApiError('An unexpected error occurred. Please try again.')
+                }
+                
+                console.error('Signup error:', error)
+            } finally {
+                setSubmitting(false)
+            }
+        }
+
+    })
+
     
 
  
+    // Helper function to check if field has error
+    const hasFieldError = (fieldName) => {
+        return formik.touched[fieldName] && formik.errors[fieldName]
+    }
 
 
 
@@ -90,6 +193,8 @@ const Signup = () => {
 
 
         {error && <div className="alert alert-danger mx-3">{error}</div>}
+
+
         <form onSubmit={handleSubmit} className='row g-3 px-3'>
             <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
