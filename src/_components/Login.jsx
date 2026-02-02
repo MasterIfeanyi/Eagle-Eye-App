@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react'
 
-import { auth, signInWithEmailAndPassword } from '../firebase/config';
 import { useAuth } from '../context/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
+import { authAPI } from '../api/authAPI'
 
 const Login = () => {
 
@@ -41,27 +41,55 @@ const Login = () => {
 
 
             // Sign in with Firebase Authentication
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const response = await authAPI.login({ email, password })
+
+            // Extract user data from response
+            const { user } = response.data
+
+            // Create secure user object for context with userId
+            const userData = {
+                userId: user.userId, // Unique identifier
+                email: user.email,
+            }
+
 
             // Update AuthContext with the new user
-            setCurrentUser(userCredential.user)
+            setCurrentUser(userData)
 
 
             navigate('/home') // Redirect to home page after successful login
 
 
         } catch (error) {
-           // Handle specific Firebase errors
-            if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-                setError('Invalid email or password');
-            } else if (error.code === 'auth/invalid-email') {
-                setError('Invalid email address');
-            } else if (error.code === 'auth/too-many-requests') {
-                setError('Too many failed login attempts. Please try again later.');
+           // Handle different error scenarios
+            if (error.response) {
+                // Server responded with error status
+                const { status, data } = error.response
+
+                switch (status) {
+                    case 400:
+                        setError(data.message || 'Invalid email or password')
+                        break
+                    case 404:
+                        setError('User not found')
+                        break
+                    case 409:
+                        setError(data.message || 'Conflict error')
+                        break
+                    case 500:
+                        setError('Server error. Please try again later.')
+                        break
+                    default:
+                        setError(data.message || 'Failed to sign in')
+                }
+            } else if (error.request) {
+                // Request made but no response received
+                setError('Unable to connect to server. Please check your internet connection.')
             } else {
-                setError(error.message || 'Failed to sign in');
+                // Something else happened
+                setError('An unexpected error occurred. Please try again.')
             }
-            console.error(error);
+            console.error('Login error:', error);
         } finally {
             setLoading(false);
         } 
@@ -84,7 +112,7 @@ return (
                     <FontAwesomeIcon icon={faEnvelope} />
                 </span>
                 <input
-                    type="text"
+                    type="email"
                     className="form-control border-start-0"
                     placeholder="Enter your Email"
                     value={email}
