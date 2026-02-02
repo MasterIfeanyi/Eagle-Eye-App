@@ -1,4 +1,13 @@
-export function handleSignupError(error, { setFieldError, setApiError }) {
+import toast from "react-hot-toast"
+
+export function handleSignupError(error, { setFieldError }) {
+
+    const loadingToast = toast.loading('Creating your account...')
+
+    // Dismiss loading toast
+    toast.dismiss(loadingToast)
+
+
     if (error.response) {
         const { status, data } = error.response
 
@@ -6,30 +15,33 @@ export function handleSignupError(error, { setFieldError, setApiError }) {
             case 400:
                 if (data.field) {
                     setFieldError(data.field, data.message)
+                    toast.error('Please check your input')
                 } else {
-                    setApiError(data.message || 'Invalid input. Please check your details.')
+                    toast.error('Invalid input. Please check your details.')
                 }
                 break
             case 409: {
                 const message = data.message || 'An account with this email or phone number already exists'
                 if (message.toLowerCase().includes('email')) {
                     setFieldError('email', 'This email is already registered')
+                    toast.error('This email is already registered')
                 } else if (message.toLowerCase().includes('phone')) {
                     setFieldError('phoneNumber', 'This phone number is already registered')
+                    toast.error('This phone number is already registered')
                 } else {
-                    setApiError(message)
+                    toast.error(message)
                 }
                 break
             }
             case 500:
-                setApiError('Server error. Please try again later.')
+                toast.error('Server error. Please try again later.')
                 break
             default:
-                setApiError(data.message || 'Failed to create account')
+                toast.error('Failed to create account')
         }
     } else if (error.request) {
-        setApiError('Unable to connect to server. Please check your internet connection.')
+        toast.error('Unable to connect to server. Please check your internet connection.')
     } else {
-        setApiError('An unexpected error occurred. Please try again.')
+        toast.error('An unexpected error occurred. Please try again.')
     }
 }

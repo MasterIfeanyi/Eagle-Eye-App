@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUser, faEnvelope, faLock, faEye, faEyeSlash, faPhone } from "@fortawesome/free-solid-svg-icons"
+import { faUser, faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react'
 import { useAuth } from '@/context/AuthContext'
 import { useNavigate, Link } from 'react-router-dom'
@@ -7,34 +7,25 @@ import { useFormik } from 'formik'
 import { signupValidationSchema } from '../validations/authSchemas'
 import { authAPI } from '../api/api'
 import { handleSignupError } from '@utils/handleSignUpError'
+import toast from 'react-hot-toast'
 
 const Signup = () => {
 
-
-    const [username, setUsername] = useState("")
-    const [confirmPassword, setConfirmPassword] = useState("")
-    const [email, setEmail] = useState("")
-    const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false)
     const [password, setPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-
-
-    const [apiError, setApiError] = useState("")
 
     const { setCurrentUser } = useAuth() // Get setCurrentUser from AuthContext
 
     const navigate = useNavigate() 
 
     
-
-
     // Formik configuration
     const formik = useFormik({
         initialValues: {
             username: '',
             password: '',
+            email: '',
             confirmPassword: ''
         },
         validationSchema: signupValidationSchema,
@@ -42,7 +33,8 @@ const Signup = () => {
         validateOnBlur: true,
 
         onSubmit: async (values, { setSubmitting, setFieldError }) => {
-            setApiError('')
+
+            const loadingToast = toast.loading('Creating your account...')
 
             try {
                 // Prepare user data for backend
@@ -67,11 +59,14 @@ const Signup = () => {
                 // Update AuthContext with the user data
                 setCurrentUser(userContextData)
 
+                toast.dismiss(loadingToast)
+                toast.success(`Welcome, ${user.firstname}! Account created successfully.`)
+
                 // Navigate to home page
                 navigate('/home')
 
             } catch (error) {
-                handleSignupError(error, { setFieldError, setApiError })
+                handleSignupError(error, { setFieldError })
                 console.error('Signup error:', error)
             } finally {
                 setSubmitting(false)
@@ -98,10 +93,6 @@ const Signup = () => {
             <h2 className="fw-bold mb-1">Create Account</h2>
             <p className="text-muted mb-4">Sign up to get started</p>
         </div>
-
-
-        {error && <div className="alert alert-danger mx-3">{error}</div>}
-
 
         <form onSubmit={formik.handleSubmit} className='row g-3 px-3'>
             {/* Username */}
@@ -151,25 +142,33 @@ const Signup = () => {
             </div>
 
             {/* Password */}
-            <div className="input-group custom-input-group">
-                <span className="input-group-text bg-white border-end-0">
-                    <FontAwesomeIcon icon={faLock} />
-                </span>
-                <input
-                    type={showPassword ? "text" : "password"}
-                    className="form-control border-start-0 border-end-0"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <span
-                    className="input-group-text bg-white border-start-0 cursor-pointer"
-                    onClick={() => setShowPassword(!showPassword)}
-                >
-                    {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
-                </span>
+            <div>
+                <div className="input-group custom-input-group">
+                    <span className="input-group-text bg-white border-end-0">
+                        <FontAwesomeIcon icon={faLock} />
+                    </span>
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        className="form-control border-start-0 border-end-0"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <span
+                        className="input-group-text bg-white border-start-0 cursor-pointer"
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+                    </span>
+                </div>
+                {hasFieldError('password') && (
+                    <div className="text-danger small mt-1">
+                        {formik.errors.password}
+                    </div>
+                )}
             </div>
 
+            {/* Confirm Password */}
             <div>
                 <div className="input-group custom-input-group">
                     <span className="input-group-text bg-white border-end-0">
