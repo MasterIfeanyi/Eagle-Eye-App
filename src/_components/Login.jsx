@@ -28,6 +28,13 @@ const Login = () => {
             return
         }
 
+        // Basic email format validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!emailRegex.test(email)) {
+            setError("Please enter a valid email address")
+            return
+        }
+
         try {
             
             setLoading(true);
