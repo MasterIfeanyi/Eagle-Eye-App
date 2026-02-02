@@ -1,27 +1,24 @@
-import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faEnvelope, faLock, faEye, faEyeSlash, faPhone } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react'
-import { auth, createUserWithEmailAndPassword, updateProfile } from '../firebase/config';
 import { useAuth } from '@/context/AuthContext'
 import { useNavigate, Link } from 'react-router-dom'
-
 import { useFormik } from 'formik'
 import { signupValidationSchema } from '../validations/authSchemas'
 import { authAPI } from '../api/api'
-
+import { handleSignupError } from '@utils/handleSignUpError'
 
 const Signup = () => {
 
 
     const [username, setUsername] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [showPassword, setShowPassword] = useState(false)
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    const [email, setEmail] = useState("")
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
+    const [password, setPassword] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
 
     const [apiError, setApiError] = useState("")
@@ -74,43 +71,7 @@ const Signup = () => {
                 navigate('/home')
 
             } catch (error) {
-                // Handle different error scenarios
-                if (error.response) {
-                    const { status, data } = error.response
-
-                    switch (status) {
-                        case 400:
-                            // Check if it's a field-specific error
-                            if (data.field) {
-                                setFieldError(data.field, data.message)
-                            } else {
-                                setApiError(data.message || 'Invalid input. Please check your details.')
-                            }
-                            break
-                        case 409: {
-                            // User already exists - set field-specific error if possible
-                            const message = data.message || 'An account with this email or phone number already exists'
-                            if (message.toLowerCase().includes('email')) {
-                                setFieldError('email', 'This email is already registered')
-                            } else if (message.toLowerCase().includes('phone')) {
-                                setFieldError('phoneNumber', 'This phone number is already registered')
-                            } else {
-                                setApiError(message)
-                            }
-                            break
-                        }
-                        case 500:
-                            setApiError('Server error. Please try again later.')
-                            break
-                        default:
-                            setApiError(data.message || 'Failed to create account')
-                    }
-                } else if (error.request) {
-                    setApiError('Unable to connect to server. Please check your internet connection.')
-                } else {
-                    setApiError('An unexpected error occurred. Please try again.')
-                }
-                
+                handleSignupError(error, { setFieldError, setApiError })
                 console.error('Signup error:', error)
             } finally {
                 setSubmitting(false)
