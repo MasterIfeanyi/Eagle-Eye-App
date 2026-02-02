@@ -1,20 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react'
-
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '@/context/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
-import { authAPI } from '../api/authAPI'
+import { authAPI } from '@/api/authAPI'
 
 const Login = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
-    const [error, setError] = useState("")
 
 
-    const { setCurrentUser, setLoading } = useAuth() // Get setCurrentUser from AuthContext
+    const { setCurrentUser, setLoading, error, setError } = useAuth() // Get setCurrentUser from AuthContext
     
     const navigate = useNavigate() 
 

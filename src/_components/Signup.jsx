@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react'
 import { auth, createUserWithEmailAndPassword, updateProfile } from '../firebase/config';
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../context/AuthProvider'
 import { useNavigate, Link } from 'react-router-dom'
 
 const Signup = () => {

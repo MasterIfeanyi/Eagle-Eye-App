@@ -7,7 +7,7 @@ import Layout from "./Layout/Layout"
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import Welcome from './_components/Welcome'
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './context/AuthProvider';
 import ProtectedRoute from './utils/ProtectedRoute'
 import MissingRoute from './utils/MissingRoute'
 import ReportPage from './_components/ReportPage'
