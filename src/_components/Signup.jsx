@@ -30,64 +30,13 @@ const Signup = () => {
 
     const navigate = useNavigate() 
 
-    const handleSubmit = async (e) => {
-
-        e.preventDefault();
-        setError('');
-
-        if (!username || !email || !password || !confirmPassword) {
-            setError("Please fill in all fields")
-            return
-        }
     
-        if (password !== confirmPassword) {
-            setError("Passwords do not match")
-            return
-        }
-
-        // Send data to backend
-        try {
-
-            setLoading(true);
-      
-            // Create user with Firebase Authentication
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-            // Update user profile with username
-            await updateProfile(userCredential.user, { displayName: username }); 
-
-            // Update AuthContext with the new user
-            setCurrentUser(userCredential.user)
-
-
-            navigate('/home') // Redirect to home page after successful login
-
-            
-        } catch (error) {
-            // Handle specific Firebase errors
-            if (error.code === 'auth/email-already-in-use') {
-                setError('Email is already in use');
-            } else if (error.code === 'auth/weak-password') {
-                setError('Password is too weak');
-            } else if (error.code === 'auth/invalid-email') {
-                setError('Invalid email address');
-            } else {
-                setError(error.message || 'Failed to create account');
-            }
-            console.error(error);
-            } finally {
-            setLoading(false);
-        }
-    }
 
 
     // Formik configuration
     const formik = useFormik({
         initialValues: {
-            firstname: '',
-            lastname: '',
-            email: '',
-            phoneNumber: '',
+            username: '',
             password: '',
             confirmPassword: ''
         },
@@ -101,11 +50,9 @@ const Signup = () => {
             try {
                 // Prepare user data for backend
                 const userData = {
-                    firstname: values.firstname.trim(),
-                    lastname: values.lastname.trim(),
+                    username: values.username.trim(),
                     email: values.email.trim().toLowerCase(),
                     password: values.password,
-                    phoneNumber: values.phoneNumber.replace(/[\s\-+()]/g, '')
                 }
 
                 // Make API request to backend
@@ -195,35 +142,54 @@ const Signup = () => {
         {error && <div className="alert alert-danger mx-3">{error}</div>}
 
 
-        <form onSubmit={handleSubmit} className='row g-3 px-3'>
-            <div className="input-group custom-input-group">
-                <span className="input-group-text bg-white border-end-0">
-                    <FontAwesomeIcon icon={faUser} />
-                </span>
-                <input
-                    type="text"
-                    className="form-control border-start-0"
-                    placeholder="Enter your Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+        <form onSubmit={formik.handleSubmit} className='row g-3 px-3'>
+            {/* Username */}
+            <div>
+                <div className="input-group custom-input-group">
+                    <span className="input-group-text bg-white border-end-0">
+                        <FontAwesomeIcon icon={faUser} />
+                    </span>
+                    <input
+                        type="text"
+                        name="username"
+                        className={`form-control border-start-0 ${hasFieldError('firstname') ? 'is-invalid' : ''}`}
+                        placeholder="Enter your User Name"
+                        value={formik.values.firstname}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+                </div>
+                {hasFieldError('username') && (
+                    <div className="text-danger small mt-1">
+                        {formik.errors.firstname}
+                    </div>
+                )}
             </div>
             
-
-            <div className="input-group custom-input-group">
-                <span className="input-group-text bg-white border-end-0">
-                    <FontAwesomeIcon icon={faEnvelope} />
-                </span>
-                <input
-                    type="text"
-                    className="form-control border-start-0"
-                    placeholder="Enter your Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+            {/* E-Mail */}
+            <div>
+                <div className="input-group custom-input-group">
+                    <span className="input-group-text bg-white border-end-0">
+                        <FontAwesomeIcon icon={faEnvelope} />
+                    </span>
+                    <input
+                        type="email"
+                        name="email"
+                        className={`form-control border-start-0 ${hasFieldError('email') ? 'is-invalid' : ''}`}
+                        placeholder="Enter your Email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+                </div>
+                {hasFieldError('email') && (
+                    <div className="text-danger small mt-1">
+                        {formik.errors.email}
+                    </div>
+                )}
             </div>
 
-
+            {/* Password */}
             <div className="input-group custom-input-group">
                 <span className="input-group-text bg-white border-end-0">
                     <FontAwesomeIcon icon={faLock} />
@@ -243,27 +209,43 @@ const Signup = () => {
                 </span>
             </div>
 
-            <div className="input-group custom-input-group">
-                <span className="input-group-text bg-white border-end-0">
-                <FontAwesomeIcon icon={faLock} />
-                </span>
-                <input
-                    type={showConfirmPassword ? "text" : "password"}
-                    className="form-control border-start-0 border-end-0"
-                    placeholder="Confirm Password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-                <span
-                    className="input-group-text bg-white border-start-0 cursor-pointer"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                >
-                    {showConfirmPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
-                </span>
+            <div>
+                <div className="input-group custom-input-group">
+                    <span className="input-group-text bg-white border-end-0">
+                        <FontAwesomeIcon icon={faLock} />
+                    </span>
+                    <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        className={`form-control border-start-0 border-end-0 ${hasFieldError('confirmPassword') ? 'is-invalid' : ''}`}
+                        placeholder="Confirm Password"
+                        value={formik.values.confirmPassword}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+                    <span
+                        className="input-group-text bg-white border-start-0 cursor-pointer"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    >
+                        {showConfirmPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+                    </span>
+                </div>
+                {hasFieldError('confirmPassword') && (
+                    <div className="text-danger small mt-1">
+                        {formik.errors.confirmPassword}
+                    </div>
+                )}
             </div>
 
+            {/* Submit Button */}
             <div className="col-12 d-flex justify-content-center">
-                <button type="submit" className="button btn-brand">{loading ? 'Creating Account...' : 'Sign up'}</button>
+                <button 
+                    type="submit" 
+                    className="button btn-brand"
+                    disabled={formik.isSubmitting || !formik.isValid}
+                >
+                    {formik.isSubmitting  ? 'Creating Account...' : 'Sign up'}
+                </button>
             </div>
         </form>
 
