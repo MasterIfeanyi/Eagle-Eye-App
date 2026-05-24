@@ -1,5 +1,5 @@
 'use client'
-import SubmitPage from '@/components/SubmitPage/SubmitPage'
+import SubmitPage from '@/_components/SubmitPage.jsx'
 export default function SubmitRoute() {
-  return <SubmitPage />
+    return <SubmitPage />
 }

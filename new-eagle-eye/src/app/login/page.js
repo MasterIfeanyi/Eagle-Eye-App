@@ -1,5 +1,5 @@
 'use client'
-import Login from '@/components/Login/Login'
+import Login from '@/_components/Login.jsx'
 export default function LoginPage() {
-  return <Login />
+    return <Login />
 }

@@ -1,5 +1,5 @@
 'use client'
-import Welcome from '@/components/Welcome/Welcome'
+import Welcome from '@/_components/Welcome.jsx'
 export default function WelcomePage() {
-  return <Welcome />
+    return <Welcome />
 }

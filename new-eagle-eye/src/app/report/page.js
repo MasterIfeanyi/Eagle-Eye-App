@@ -1,5 +1,5 @@
 'use client'
-import ReportPage from '@/components/ReportPage/ReportPage'
+import ReportPage from '@/_components/ReportPage.jsx'
 export default function ReportRoute() {
-  return <ReportPage />
+    return <ReportPage />
 }
