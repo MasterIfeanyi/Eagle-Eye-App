@@ -1,0 +1,675 @@
+:root {
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --coolGrey: #64748b;
+  --btnInactive: #cbd5e1;
+  --foreground: #000;
+  --card: #fff;
+  --border: #dee2e6;
+  --primary: #3b82f6;
+  --destructive: #dc2626;
+  --muted-foreground: #6b7280;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+img{
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li{
+  list-style: none;
+}
+
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: gray;
+  min-height: 100vh; 
+}
+
+.button {
+  padding: 8px 27px;
+  margin: 0px 16px 0px 0px;
+  border-radius: 38px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 1s ease;
+  display: inline-block; /* Ensure it behaves like a button */
+}
+
+.button.btn-brand {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+}
+
+.button.btn-brand:hover {
+  background-color: #212529;
+  color: white;
+  border-color: #212529;
+}
+
+.button.btn-outline-brand {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.button.btn-outline-brand:hover {
+  background-color: #212529;
+  color: white;
+  border-color: #212529;
+}
+
+
+.report-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 10px;
+  border-radius: 12px;  
+  font-size: smaller;
+  white-space: nowrap;  
+  text-align: center;
+}
+
+
+/* CSS Helper class */
+
+.form-control, .form-select,
+.input-group-text
+{
+  border-color: #dee2e6;
+  outline: none;
+  box-shadow: none;
+  padding: 12px 10px
+}
+
+.form-control:focus, .form-select:focus,
+.input-group-text:focus
+{
+  border-color: #212529;
+  outline: none;
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+input {
+  border-color: #212529;
+  outline: none;
+  box-shadow: none;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit; /* Ensure the link inherits the color of the parent */
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* Ensure the link inherits the color of the parent */
+}
+
+/* Mobile container styles for desktop view */
+@media (min-width: 568px) {
+  .mobile-container {
+    /* iPhone-like dimensions */
+    width: 375px;
+    height: 760px;
+    border-radius: 44px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+  .App {
+    padding: 30px;
+  }
+  .report-categories {
+    max-height: 170px; /* Set to fit-content to avoid cutting off content */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 10px; /* Add padding to the right to avoid scrollbar overlap */
+  }
+}
+
+/* For actual mobile devices, take up full screen */
+@media (max-width: 567px) {
+  .mobile-container {
+    width: 100%;
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .App {
+    padding: 0px;
+  }
+  .report-categories {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+}
+
+
+/* splash screen */
+
+
+.splash-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: black;
+  color: white;
+  opacity: 1;
+  /* visibility: visible; */
+  transition: opacity 2.3s ease-out;
+}
+
+.splash-screen.hidden {
+  opacity: 0;
+  /* visibility: hidden; */
+}
+
+
+.splash_message-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: fit-content;
+}
+
+.splash-logo {
+  width: 50px;
+  height: 80px;
+}
+
+
+/* Home page */
+
+.search-bar-container {
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.search-bar {
+  position: relative;
+  width: 90%;
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+
+.search-icon {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.search-bar input {
+  outline: none;
+  border: none;
+  width: 80%;
+}
+
+
+
+footer {
+  width: 100%;
+  padding: 3px 20px 10px 20px;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+}
+
+.phone-btn {
+  border-radius: 100%;
+  background-color: green;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+}
+
+.user-btn{
+  border-radius: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+}
+
+/* Loading circle */
+
+.loading__container {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.loading__circle {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid transparent;
+  border-bottom-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+/* signup screen */
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+}
+
+.section-title{
+  text-align: left;
+  margin: 40px 0px 0px 10px;
+  max-width: 600px;
+  padding: 10px;
+}
+
+/* .signup .btn, .login .btn {
+  padding: 14px 27px;
+  margin: 0px 16px 0px 0px;
+  border-radius: 32px;
+  font-weight: 500;
+  transition: all 1s ease;
+} */
+
+/* .signup .btn-brand, .login .btn-brand {
+  background-color: black;
+  border-color: 1px solid black;
+  color: white;
+}
+
+.signup .btn-brand:hover {
+  background-color: #212529;
+  border-color: #212529;
+  color: white;
+} */
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.signup .form-control,
+.signup .input-group-text, 
+.login .form-control,
+.login .input-group-text
+{
+  border-color: #dee2e6;
+  outline: none;
+  box-shadow: none;
+  padding: 12px 10px
+}
+
+.signup .form-control:focus,
+.signup .input-group-text:focus, 
+.login .form-control:focus, 
+.login .input-group-text:focus
+{
+  border-color: #212529;
+  outline: none;
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+input {
+  border-color: #212529;
+  outline: none;
+  box-shadow: none;
+}
+
+
+/* login screen */
+.login {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+}
+
+footer {
+  bottom: 0;
+}
+
+
+/* Welcome */
+.welcome {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+}
+
+.welcome-title {
+  text-align: center;
+  margin: 40px auto 0px auto;
+  max-width: 600px;
+  padding: 10px;
+}
+
+
+/* Missing */
+
+.missing {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+}
+
+.missing .section-title {
+  text-align: center;
+  /* margin: 40px 0px 0px 10px; */
+  max-width: 600px;
+  padding: 10px;
+}
+
+.banner-message {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+/* Report page */
+
+.report {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+}
+
+.report .report-section-title {
+  text-align: center;
+  margin: 10px 0px 0px 0px;
+  /* max-width: 600px; */
+  padding: 10px 0px;
+}
+
+.handleForm {
+  max-height: 90vh; 
+  overflow-y: auto; 
+  padding-right: 10px;
+}
+
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.handleForm::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* Hide scrollbar for Firefox */
+.handleForm {
+  scrollbar-width: none; /* Firefox */
+}
+
+
+/* Submit Page */
+
+.submit {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f8f9fa;
+}
+
+.back-arrow {
+  margin: 50px 0px 0px 30px;
+  font-size: 24px;
+  cursor: pointer;
+  align-self: start;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.checkmark-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #4caf50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+}
+
+.checkmark {
+  width: 100px;
+  height: 100px;
+}
+
+.checkmark-circle circle {
+  stroke: none;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+}
+
+.checkmark-check {
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  animation: checkmark 0.5s ease-in-out 0.3s forwards;
+}
+
+@keyframes checkmark {
+  0% {
+    stroke-dasharray: 50px 50px;
+    stroke-dashoffset: 50px;
+  }
+  100% {
+    stroke-dasharray: 50px 50px;
+    stroke-dashoffset: 0;
+  }
+}
+
+
+/* Home Page */
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+}
+
+.home-page .home-page-btn {
+  border-radius: 10px;
+  background-color: green;
+  color: white;
+  text-align: center;
+  padding: 4px 12px;
+  flex: nowrap;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.main::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.safety-tips ul {
+  list-style-type: "none";  /* Add bullet points */
+}
+
+.safety-tips li {
+  margin-bottom: 10px; /* Add margin to each list item */
+  position: relative;
+  padding-left: 25px;
+}
+
+
+.safety-tips li:before {
+  content: '📌'; /* Add content to the list item */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #000; */
+}
+
+
+
+
+
+
+/* Report Categories */
+
+
+
+
+.report-categories::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+.report-categories::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Set the color of the scrollbar thumb */
+  border-radius: 4px; /* Add border radius to the scrollbar thumb */
+}
+
+.report-categories::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Set the color of the scrollbar track */
+}
+
+
+
+
+
+
+
+
+.mexican-wave:before {
+  -webkit-animation: mexican-wave .75s infinite ease backwards;
+    animation: mexican-wave .75s infinite ease backwards;
+    border-radius: 100%;
+    content: '';
+    height: 10px;
+    position: absolute;
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+    width: 10px; 
+}
+
+
+
+
+
+@-webkit-keyframes mexican-wave {
+  0% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+  15% {
+    -webkit-box-shadow: -30px -20px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -20px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+  30% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -20px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -20px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+  45% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -20px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -20px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+  60% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -20px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -20px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+  75% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -20px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -20px 0 0 var(--primary); }
+  100% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); } }
+
+@keyframes mexican-wave {
+  0% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+  15% {
+    -webkit-box-shadow: -30px -20px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -20px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+  30% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -20px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -20px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+  45% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -20px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -20px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+  60% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -20px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -20px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+  75% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -20px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -20px 0 0 var(--primary); }
+  100% {
+    -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); } }
