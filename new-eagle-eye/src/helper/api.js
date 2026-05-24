@@ -2,7 +2,7 @@ const BASE_URL = '/api'
 
 export const authAPI = {
     signup: async (userData) => {
-        const response = await fetch(`${BASE_URL}/auth/signup`, {
+        const response = await fetch(`${BASE_URL}/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData)
@@ -18,7 +18,7 @@ export const authAPI = {
     },
 
     login: async (credentials) => {
-        const response = await fetch(`${BASE_URL}/auth/login`, {
+        const response = await fetch(`${BASE_URL}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(credentials)
@@ -34,7 +34,7 @@ export const authAPI = {
     },
 
     logout: async () => {
-        const response = await fetch(`${BASE_URL}/auth/logout`, {
+        const response = await fetch(`${BASE_URL}/logout`, {
             method: 'POST'
         })
 
@@ -48,7 +48,7 @@ export const authAPI = {
     },
 
     getCurrentUser: async () => {
-        const response = await fetch(`${BASE_URL}/auth/me`)
+        const response = await fetch(`${BASE_URL}/me`)
 
         const data = await response.json()
 

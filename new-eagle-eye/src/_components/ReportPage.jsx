@@ -4,8 +4,8 @@ import { faExclamationTriangle, faLocation, faUpload, faCalendar } from "@fortaw
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
-import { createReport } from '@/api/api'
-import Header from '@/components/Header/Header'
+import { createReport } from '@/helper/api'
+import Header from './Header'
 
 const ReportPage = () => {
     const [title, setTitle] = useState("")

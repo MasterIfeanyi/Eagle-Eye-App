@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useFormik } from 'formik'
 import { signupValidationSchema } from '@/validations/authSchemas'
-import { authAPI } from '@/api/api'
+import { authAPI } from '@/helper/api'
 import toast from 'react-hot-toast'
 
 const Signup = () => {

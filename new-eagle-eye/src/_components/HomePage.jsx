@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faFileAlt } from "@fortawesome/free-solid-svg-icons"
 import {  AlertTriangle, ChevronRight } from "lucide-react"
 import { Card } from "react-bootstrap"
-import { Link } from 'react-router-dom'
+import Link  from 'next/link'
 import Header from './Header'
 
 const HomePage = () => {
@@ -28,7 +28,7 @@ const HomePage = () => {
               <p className="small text-danger mb-0">Call emergency services immediately</p>
             </div>
             <div>
-              <Link to="/report" className='report-btn'>Make a report</Link>
+              <Link href="/report" className='report-btn'>Make a report</Link>
             </div>
           </div>
 
@@ -83,7 +83,7 @@ const HomePage = () => {
 
       <footer>
         <div className="footer">
-          <Link to="/report" className='phone-btn'>
+          <Link href="/report" className='phone-btn'>
             <FontAwesomeIcon icon={faFileAlt} className="" />
           </Link>
 

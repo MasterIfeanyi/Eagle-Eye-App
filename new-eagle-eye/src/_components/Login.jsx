@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import { useFormik } from 'formik'
 import toast from 'react-hot-toast'
 import { loginValidationSchema } from '@/validations/authSchemas'
-import { authAPI } from '@/api/api'
+import { authAPI } from '@/helper/api'
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
