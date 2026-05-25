@@ -36,7 +36,6 @@ const HomePage = () => {
             <h2 className="fs-5 fw-semibold mb-3">Safety Tips</h2>
             <Card className="border bg-info bg-opacity-10">
               <Card.Body className="p-3">
-                <h3 className="fs-6 fw-medium mb-2">Stay Safe When Reporting</h3>
                 <ul className="small ps-3 mb-2">
                   <li>Report from a safe location</li>
                   <li>All reports are confidential</li>
