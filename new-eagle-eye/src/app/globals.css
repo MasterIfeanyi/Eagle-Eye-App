@@ -145,7 +145,9 @@ a {
     border-radius: 44px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     position: relative;
-    overflow: hidden;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .App {
@@ -170,6 +172,13 @@ a {
     max-width: 100%;
     border-radius: 0;
     box-shadow: none;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .mobile-container::-webkit-scrollbar {
+    display: none;
   }
 
   .App {
@@ -607,7 +616,10 @@ footer {
   display: flex;
   flex-direction: column;
   background-color: white;
-  height: 100%;
+  min-height: 100%;
+  padding-bottom: 80px; /* gives breathing room at the bottom */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .hotlines-page::-webkit-scrollbar {

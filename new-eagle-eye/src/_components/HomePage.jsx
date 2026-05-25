@@ -25,7 +25,7 @@ const HomePage = () => {
             </div>
             <div>
               <h3 className="fs-6 fw-medium text-danger mb-0">Emergency?</h3>
-              <p className="small text-danger mb-0">Call emergency services immediately</p>
+              <small className="small text-danger mb-0">Call emergency services immediately</small>
             </div>
             <div>
               <Link href="/report" className='report-btn'>Make a report</Link>

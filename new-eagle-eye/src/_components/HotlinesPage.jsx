@@ -80,7 +80,7 @@ const HotlineItem = ({ label, number }) => {
 
 const HotlinesPage = () => {
     return (
-        <div className="hotlines-page" style={{ minHeight: '100vh', overflowY: 'auto' }}>
+        <div className="hotlines-page" style={{ overflowY: 'auto' }}>
             <Header />
 
             <div className="container py-3">
