@@ -70,7 +70,6 @@ const HomePage = () => {
                       <h3 className="fs-6 fw-medium mb-0">{category.title}</h3>
                       <p className="small text-muted mb-0">{category.desc}</p>
                     </div>
-                    <ChevronRight size={20} className="text-muted" />
                   </Card.Body>
                 </Card>
               ))}
