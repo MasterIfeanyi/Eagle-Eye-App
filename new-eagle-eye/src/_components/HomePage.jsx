@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUser, faFileAlt } from "@fortawesome/free-solid-svg-icons"
-import {  AlertTriangle, ChevronRight } from "lucide-react"
+import { faUser, faFileAlt, faPhone } from "@fortawesome/free-solid-svg-icons"
+import {  AlertTriangle } from "lucide-react"
 import { Card } from "react-bootstrap"
 import Link  from 'next/link'
 import Header from './Header'
@@ -38,7 +38,7 @@ const HomePage = () => {
               <Card.Body className="p-3">
                 <ul className="small ps-3 mb-2">
                   <li>Report from a safe location</li>
-                  <li>All reports are confidential</li>
+                  <li>Travel in groups</li>
                   <li>You can report anonymously</li>
                   <li>Save evidence when possible</li>
                 </ul>
@@ -85,9 +85,9 @@ const HomePage = () => {
             <FontAwesomeIcon icon={faFileAlt} className="" />
           </Link>
 
-          <button className='user-btn'>
-            <FontAwesomeIcon icon={faUser} className="" />
-          </button>
+          <Link href="/hotlines" className='user-btn'>
+            <FontAwesomeIcon icon={faPhone} className="" />
+          </Link>
         </div>
       </footer>
 

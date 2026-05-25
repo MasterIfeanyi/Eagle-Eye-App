@@ -29,7 +29,7 @@ body {
   min-height: 100vh;
 }
 
-img{
+img {
   width: 100%;
 }
 
@@ -38,17 +38,17 @@ ul {
   padding: 0;
 }
 
-li{
+li {
   list-style: none;
 }
 
-.App{
+.App {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   background-color: gray;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 .button {
@@ -58,7 +58,8 @@ li{
   font-weight: 500;
   text-align: center;
   transition: all 1s ease;
-  display: inline-block; /* Ensure it behaves like a button */
+  display: inline-block;
+  /* Ensure it behaves like a button */
 }
 
 .button.btn-brand {
@@ -90,27 +91,27 @@ li{
   background-color: #4caf50;
   color: white;
   padding: 10px 10px;
-  border-radius: 12px;  
+  border-radius: 12px;
   font-size: smaller;
-  white-space: nowrap;  
+  white-space: nowrap;
   text-align: center;
 }
 
 
 /* CSS Helper class */
 
-.form-control, .form-select,
-.input-group-text
-{
+.form-control,
+.form-select,
+.input-group-text {
   border-color: #dee2e6;
   outline: none;
   box-shadow: none;
   padding: 12px 10px
 }
 
-.form-control:focus, .form-select:focus,
-.input-group-text:focus
-{
+.form-control:focus,
+.form-select:focus,
+.input-group-text:focus {
   border-color: #212529;
   outline: none;
   box-shadow: none;
@@ -125,12 +126,14 @@ input {
 
 .link {
   text-decoration: none;
-  color: inherit; /* Ensure the link inherits the color of the parent */
+  color: inherit;
+  /* Ensure the link inherits the color of the parent */
 }
 
 a {
   text-decoration: none;
-  color: inherit; /* Ensure the link inherits the color of the parent */
+  color: inherit;
+  /* Ensure the link inherits the color of the parent */
 }
 
 /* Mobile container styles for desktop view */
@@ -144,13 +147,18 @@ a {
     position: relative;
     overflow: hidden;
   }
+
   .App {
     padding: 30px;
   }
+
   .report-categories {
-    max-height: 170px; /* Set to fit-content to avoid cutting off content */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding-right: 10px; /* Add padding to the right to avoid scrollbar overlap */
+    max-height: 170px;
+    /* Set to fit-content to avoid cutting off content */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    padding-right: 10px;
+    /* Add padding to the right to avoid scrollbar overlap */
   }
 }
 
@@ -163,9 +171,11 @@ a {
     border-radius: 0;
     box-shadow: none;
   }
+
   .App {
     padding: 0px;
   }
+
   .report-categories {
     max-height: 200px;
     overflow-y: auto;
@@ -267,7 +277,7 @@ footer {
   height: 42px;
 }
 
-.user-btn{
+.user-btn {
   border-radius: 100%;
   background-color: black;
   color: white;
@@ -300,6 +310,7 @@ footer {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -316,7 +327,7 @@ footer {
   height: 100%;
 }
 
-.section-title{
+.section-title {
   text-align: left;
   margin: 40px 0px 0px 10px;
   max-width: 600px;
@@ -348,10 +359,9 @@ footer {
 }
 
 .signup .form-control,
-.signup .input-group-text, 
+.signup .input-group-text,
 .login .form-control,
-.login .input-group-text
-{
+.login .input-group-text {
   border-color: #dee2e6;
   outline: none;
   box-shadow: none;
@@ -359,10 +369,9 @@ footer {
 }
 
 .signup .form-control:focus,
-.signup .input-group-text:focus, 
-.login .form-control:focus, 
-.login .input-group-text:focus
-{
+.signup .input-group-text:focus,
+.login .form-control:focus,
+.login .input-group-text:focus {
   border-color: #212529;
   outline: none;
   box-shadow: none;
@@ -447,8 +456,8 @@ footer {
 }
 
 .handleForm {
-  max-height: 90vh; 
-  overflow-y: auto; 
+  max-height: 90vh;
+  overflow-y: auto;
   padding-right: 10px;
 }
 
@@ -461,7 +470,8 @@ footer {
 
 /* Hide scrollbar for Firefox */
 .handleForm {
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 
@@ -522,6 +532,7 @@ footer {
     stroke-dasharray: 50px 50px;
     stroke-dashoffset: 50px;
   }
+
   100% {
     stroke-dasharray: 50px 50px;
     stroke-dashoffset: 0;
@@ -555,26 +566,31 @@ footer {
   overflow-y: auto;
 
   scrollbar-width: none;
-  -ms-overflow-style: none; /* IE and Edge */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
 
 .main::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  display: none;
+  /* Safari and Chrome */
 }
 
 .safety-tips ul {
-  list-style-type: "none";  /* Add bullet points */
+  list-style-type: "none";
+  /* Add bullet points */
 }
 
 .safety-tips li {
-  margin-bottom: 10px; /* Add margin to each list item */
+  margin-bottom: 10px;
+  /* Add margin to each list item */
   position: relative;
   padding-left: 25px;
 }
 
 
 .safety-tips li:before {
-  content: '📌'; /* Add content to the list item */
+  content: '📌';
+  /* Add content to the list item */
   position: absolute;
   top: 0;
   left: 0;
@@ -585,9 +601,23 @@ footer {
 }
 
 
+/* Hotlines */
 
+.hotlines-page {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+}
 
+.hotlines-page::-webkit-scrollbar {
+  display: none;
+}
 
+.hotlines-page {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 /* Report Categories */
 
@@ -595,16 +625,20 @@ footer {
 
 
 .report-categories::-webkit-scrollbar {
-  width: 8px; /* Set the width of the scrollbar */
+  width: 8px;
+  /* Set the width of the scrollbar */
 }
 
 .report-categories::-webkit-scrollbar-thumb {
-  background-color: #ccc; /* Set the color of the scrollbar thumb */
-  border-radius: 4px; /* Add border radius to the scrollbar thumb */
+  background-color: #ccc;
+  /* Set the color of the scrollbar thumb */
+  border-radius: 4px;
+  /* Add border radius to the scrollbar thumb */
 }
 
 .report-categories::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Set the color of the scrollbar track */
+  background-color: #f1f1f1;
+  /* Set the color of the scrollbar track */
 }
 
 
@@ -616,14 +650,14 @@ footer {
 
 .mexican-wave:before {
   -webkit-animation: mexican-wave .75s infinite ease backwards;
-    animation: mexican-wave .75s infinite ease backwards;
-    border-radius: 100%;
-    content: '';
-    height: 10px;
-    position: absolute;
-    -webkit-transform: translateY(10px);
-    transform: translateY(10px);
-    width: 10px; 
+  animation: mexican-wave .75s infinite ease backwards;
+  border-radius: 100%;
+  content: '';
+  height: 10px;
+  position: absolute;
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+  width: 10px;
 }
 
 
@@ -633,45 +667,73 @@ footer {
 @-webkit-keyframes mexican-wave {
   0% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+
   15% {
     -webkit-box-shadow: -30px -20px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -20px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+    box-shadow: -30px -20px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+
   30% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -20px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -20px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -20px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+
   45% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -20px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -20px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -20px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+
   60% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -20px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -20px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -20px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+
   75% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -20px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -20px 0 0 var(--primary); }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -20px 0 0 var(--primary);
+  }
+
   100% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); } }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+}
 
 @keyframes mexican-wave {
   0% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+
   15% {
     -webkit-box-shadow: -30px -20px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -20px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+    box-shadow: -30px -20px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+
   30% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -20px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -20px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -20px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+
   45% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -20px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -20px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -20px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+
   60% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -20px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -20px 0 0 var(--primary), 30px -10px 0 0 var(--primary); }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -20px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+
   75% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -20px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -20px 0 0 var(--primary); }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -20px 0 0 var(--primary);
+  }
+
   100% {
     -webkit-box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
-            box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary); } }
+    box-shadow: -30px -10px 0 0 var(--primary), -15px -10px 0 0 var(--primary), 0 -10px 0 0 var(--primary), 15px -10px 0 0 var(--primary), 30px -10px 0 0 var(--primary);
+  }
+}

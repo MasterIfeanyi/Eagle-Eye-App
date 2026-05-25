@@ -14,10 +14,10 @@ const Header = () => {
           <img src="./eagle.png" style={{width: "20px", height: "30px"}} alt="" />
           <h1 className="h5 mb-0 fw-bold">Eagle Eye</h1>
         </div>
-        <div className="d-flex align-items-center gap-3">
+        {/* <div className="d-flex align-items-center gap-3">
           <Bell size={20} />
           <Menu size={20} />
-        </div>
+        </div> */}
       </div>
     </header>
   )
