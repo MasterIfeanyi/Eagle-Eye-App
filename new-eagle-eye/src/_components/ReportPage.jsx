@@ -1,6 +1,6 @@
 'use client'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faExclamationTriangle, faLocation, faUpload, faCalendar } from "@fortawesome/free-solid-svg-icons"
+import { faExclamationTriangle, faLocation, faUpload, faCalendar, faSpinner  } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
