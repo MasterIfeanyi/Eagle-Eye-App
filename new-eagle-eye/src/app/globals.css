@@ -617,7 +617,7 @@ footer {
   flex-direction: column;
   background-color: white;
   min-height: 100%;
-  padding-bottom: 80px; /* gives breathing room at the bottom */
+  padding-bottom: 20px; /* gives breathing room at the bottom */
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
