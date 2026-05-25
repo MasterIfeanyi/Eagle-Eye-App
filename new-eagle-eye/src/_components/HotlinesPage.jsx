@@ -80,29 +80,31 @@ const HotlineItem = ({ label, number }) => {
 
 const HotlinesPage = () => {
     return (
-        <div className="hotlines-page" style={{ overflowY: 'auto' }}>
+        <div className="hotlines-page">
             <Header />
 
-            <div className="container py-3">
-                <div className="mb-4">
-                    <h2 className="fs-5 fw-bold mb-1">Emergency Hotlines</h2>
-                    <p className="small text-muted mb-0">Tap a number to call, or copy it to your clipboard</p>
-                </div>
+            <div style={{ overflowY: 'auto', flex: 1 }}>
+                <div className="container py-3">
+                    <div className="mb-4">
+                        <h2 className="fs-5 fw-bold mb-1">Emergency Hotlines</h2>
+                        <p className="small text-muted mb-0">Tap a number to call, or copy it to your clipboard</p>
+                    </div>
 
-                <div className="d-flex flex-column gap-3">
-                    {hotlines.map((group, index) => (
-                        <Card key={index} className="border">
-                            <Card.Body className="p-3">
-                                <div className="d-flex align-items-center gap-2 mb-2">
-                                    <span style={{ fontSize: '1.25rem' }}>{group.icon}</span>
-                                    <h3 className="fs-6 fw-semibold mb-0">{group.category}</h3>
-                                </div>
-                                {group.numbers.map((item, i) => (
-                                    <HotlineItem key={i} label={item.label} number={item.number} />
-                                ))}
-                            </Card.Body>
-                        </Card>
-                    ))}
+                    <div className="d-flex flex-column gap-3">
+                        {hotlines.map((group, index) => (
+                            <Card key={index} className="border">
+                                <Card.Body className="p-3">
+                                    <div className="d-flex align-items-center gap-2 mb-2">
+                                        <span style={{ fontSize: '1.25rem' }}>{group.icon}</span>
+                                        <h3 className="fs-6 fw-semibold mb-0">{group.category}</h3>
+                                    </div>
+                                    {group.numbers.map((item, i) => (
+                                        <HotlineItem key={i} label={item.label} number={item.number} />
+                                    ))}
+                                </Card.Body>
+                            </Card>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
